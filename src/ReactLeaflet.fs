@@ -4,11 +4,40 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Feliz
 
+// AttributionControl
+// Circle
+// CircleMarker
+// FeatureGroup
+// GeoJSON
+// ImageOverlay
+// LayerGroup
+// LayersControl
+// Marker
+// Pane
+// Polygon
+// Polyline
+// Popup
+// Rectangle
+// SVGOverlay
+// ScaleControl
+// TileLayer
+// Tooltip
+// VideoOverlay
+// WMSTileLayer
+// ZoomControl
 
 [<Erase>]
 type ReactLeaflet =
     static member inline mapContainer (properties: IMapContainerProp list) =
-        Interop.reactApi.createElement(import "mapContainer" "react-leaflet", createObj !!properties)
+        Interop.reactApi.createElement (import "MapContainer" "react-leaflet", createObj !!properties)
+    static member inline mapConsumer (properties: IRenderProp) =
+        Interop.reactApi.createElement (import "MapConsumer" "react-leaflet", createObj !!properties)
+    static member inline useMap () =
+        Interop.reactApi.createElement (import "useMap" "react-leaflet", createObj !!properties)
+    static member inline useMapEvent (ev: string * (unit -> unit)) =
+        Interop.reactApi.createElement (import "useMapEvent" "react-leaflet", createObj !!properties)
+    static member inline useMapEvents (ev: Leaflet.LeafletEventHandlerFnMap) =
+        Interop.reactApi.createElement (import "useMapEvents" "react-leaflet", createObj !!properties)
 
 [<Erase>]
 type mapContainer =
