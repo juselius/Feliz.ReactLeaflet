@@ -10,12 +10,6 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" \
 RUN apt-get update \
     && apt-get install -y nodejs p7zip-full yarn git procps libgdiplus
 
-# Install google-chrome for Canopy/Selenium
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-    && apt install -y ./google-chrome-stable_current_amd64.deb \
-    && sed -i 's,HERE/chrome",& --no-sandbox ,' /opt/google/chrome/google-chrome \
-    && rm -f google-chrome-stable_current_amd64.deb
-
 # Clean up
 RUN apt-get autoremove -y \
     && apt-get clean -y \
@@ -24,8 +18,6 @@ RUN apt-get autoremove -y \
 # Install dotnet tools
 RUN dotnet tool install fable -g
 RUN dotnet tool install fantomas-tool -g
-RUN dotnet tool install paket -g
-RUN dotnet tool install fake-cli -g
 
 # Trouble brewing
 RUN rm /etc/ssl/openssl.cnf
