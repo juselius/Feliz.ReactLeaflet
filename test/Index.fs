@@ -3,9 +3,9 @@ module Index
 open Fable.Core.JsInterop
 
 importAll "./style.scss"
-
-open App
+importAll "../node_modules/leaflet/dist/leaflet.css"
 
 open Browser.Dom
 open Feliz
-ReactDOM.render(App.app (), document.getElementById "feliz-app")
+
+ReactDOM.render(App.App (), document.getElementById "feliz-app")

@@ -15,12 +15,14 @@
     <PackageReference Include="Fable.PolyglotProvider" Version="1.0.1" />
     <PackageReference Include="Fable.React" Version="7.4.1" />
     <PackageReference Include="Feliz" Version="1.50.0" />
-    <PackageReference Include="Feliz.Bulma" Version="2.17.0" />
     <PackageReference Include="Feliz.MaterialUI" Version="1.2.6" />
     <PackageReference Include="Feliz.Router" Version="3.8.0" />
     <PackageReference Include="FSharpPlus" Version="1.2.1" />
     <PackageReference Include="Thoth.Fetch" Version="3.0.1" />
     <PackageReference Include="Thoth.Json" Version="6.0.0" />
     <PackageReference Include="Zanaptak.TypedCssClasses" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\Feliz.ReactLeaflet.fsproj" />
   </ItemGroup>
 </Project>
