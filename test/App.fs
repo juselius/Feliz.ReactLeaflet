@@ -5,6 +5,7 @@ open Thoth.Fetch
 open Feliz
 open Feliz.MaterialUI
 open Feliz.Router
+open Feliz.ReactLeaflet
 
 type Model = {
     CurrentUrl: string list
@@ -24,9 +25,14 @@ let update (model: Model) (msg: Message) =
     match msg with
     | UrlChanged path -> handleUrlChanged model path
 
-let navBar model dispatch = Html.div []
+let navBar model dispatch =
+    Html.div []
 
-let indexView model dispatch = Html.h1 "Index"
+let indexView model dispatch =
+    Html.div [
+        Html.h1 "Index"
+        ReactLeaflet.mapContainer [ mapContainer.id "foo" ]
+    ]
 
 [<ReactComponent>]
 let App () =
