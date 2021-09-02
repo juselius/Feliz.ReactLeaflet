@@ -7,6 +7,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Types.fs" />
+    <Compile Include="Interop.fs" />
     <Compile Include="ReactLeaflet.fs" />
   </ItemGroup>
   <ItemGroup>
