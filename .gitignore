@@ -5,7 +5,8 @@ obj/
 bin/
 packages/
 node_modules/
-src/Client/js/
+src/js/
+test/js/
 release.cmd
 release.sh
 .idea/

@@ -1,9 +1,9 @@
 {
     "private": true,
     "scripts": {
-        "start": "webpack-dev-server",
-        "build": "webpack -p",
-        "test:live": "webpack-dev-server --config webpack.tests.config.js"
+        "start": "webpack serve",
+        "test": "webpack serve",
+        "build": "webpack -p"
     },
     "devDependencies": {
         "@babel/core": "^7.15.0",
@@ -33,6 +33,7 @@
     "dependencies": {
         "@material-ui/core": "^4.12.3",
         "@material-ui/lab": "4.0.0-alpha.60",
+        "leaflet": "^1.7.1",
         "node-polyglot": "^2.4.0"
     }
 }
