@@ -1,0 +1,6 @@
+eventHandlers	LeafletEventHandlerFnMap	No	Yes	Evented
+opacity	number	No	Yes	GridLayer
+pane	string	No	No	Pane
+ref	RefObject<Leaflet.TileLayer>	No	Yes	Referenceable
+url	string	Yes	No
+zIndex	number	No	Yes	GridLayer

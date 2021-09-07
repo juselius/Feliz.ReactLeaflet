@@ -9,6 +9,10 @@
   <ItemGroup>
     <Compile Include="Types.fs" />
     <Compile Include="Interop.fs" />
+    <Compile Include="UILayer.fs" />
+    <Compile Include="RasterLayer.fs" />
+    <Compile Include="VectorLayer.fs" />
+    <Compile Include="Controls.fs" />
     <Compile Include="ReactLeaflet.fs" />
   </ItemGroup>
   <ItemGroup>

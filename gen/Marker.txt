@@ -1,0 +1,10 @@
+attribution	string	No	Yes	Attribution
+children	ReactNode	No	Yes	ParentComponent
+draggable	boolean	No	Yes
+eventHandlers	LeafletEventHandlerFnMap	No	Yes	Evented
+icon	Leaflet.Icon	No	Yes
+opacity	number	No	Yes
+pane	string	No	No	Pane
+position	LatLngExpression	Yes	Yes
+ref	RefObject<Leaflet.Marker>	No	Yes	Referenceable
+zIndexOffset	number	No	Yes

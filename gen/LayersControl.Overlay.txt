@@ -1,0 +1,5 @@
+checked	boolean	No	Yes
+children	ReactNode	No	Yes	ParentComponent
+name	string	Yes	No
+
+

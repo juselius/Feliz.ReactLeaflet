@@ -1,0 +1,7 @@
+attribution	string	No	Yes	Attribution
+children	ReactNode	No	Yes	ParentComponent
+data	GeoJsonObject	Yes	No
+eventHandlers	LeafletEventHandlerFnMap	No	Yes	Evented
+pane	string	No	No	Pane
+ref	RefObject<Leaflet.GeoJSON>	No	Yes	Referenceable
+style	PathOptions or StyleFunction	No	Yes

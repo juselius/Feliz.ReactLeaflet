@@ -1,0 +1,7 @@
+attribution	string	No	Yes	Attribution
+children	ReactNode	No	Yes	ParentComponent
+eventHandlers	LeafletEventHandlerFnMap	No	Yes	Evented
+pane	string	No	No	Pane
+pathOptions	PathOptions	No	Yes	Path
+positions	LatLngExpression[], LatLngExpression[][] or LatLngExpression[][][]	Yes	Yes
+ref	RefObject<Leaflet.Polygon>	No	Yes	Referenceable

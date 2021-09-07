@@ -1,0 +1,8 @@
+attribution	string	No	Yes	Attribution
+children	ReactNode	No	Yes	ParentComponent
+eventHandlers	LeafletEventHandlerFnMap	No	Yes	Evented
+onClose	() => void	No	Yes
+onOpen	() => void	No	Yes
+pane	string	No	No	Pane
+position	LatLngExpression	No	Yes
+ref	RefObject<Leaflet.Popup>	No	Yes	Referenceable
