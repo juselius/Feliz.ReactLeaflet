@@ -30,14 +30,15 @@ open Feliz
 type ReactLeaflet =
     static member inline mapContainer (properties: IMapContainerProp list) =
         Interop.reactApi.createElement (import "MapContainer" "react-leaflet", createObj !!properties)
-    static member inline mapConsumer (properties: IRenderProp) =
-        Interop.reactApi.createElement (import "MapConsumer" "react-leaflet", createObj !!properties)
-    static member inline useMap () =
-        Interop.reactApi.createElement (import "useMap" "react-leaflet", createObj !!properties)
-    static member inline useMapEvent (ev: string * (unit -> unit)) =
-        Interop.reactApi.createElement (import "useMapEvent" "react-leaflet", createObj !!properties)
-    static member inline useMapEvents (ev: Leaflet.LeafletEventHandlerFnMap) =
-        Interop.reactApi.createElement (import "useMapEvents" "react-leaflet", createObj !!properties)
+    static member inline mapConsumer (renderer: Leaflet.Map -> unit) =
+        let x = Fable.React.ReactBindings.React.createElement (import "MapConsumer" "react-leaflet", [], [ !!renderer ])
+        Fable.Core.JS.console.log x
+        x
+    static member inline useMap () : Leaflet.Map = import "useMap" "react-leaflet"
+    [<Emit("useMapEvent($0, $1)")>]
+    static member inline useMapEvent (ev: string * (unit -> unit)) : ReactElement = jsNative
+    [<Emit("useMapEvents($0)")>]
+    static member inline useMapEvents (ev: Leaflet.LeafletEventHandlerFnMap) : ReactElement = jsNative
 
 [<Erase>]
 type mapContainer =
