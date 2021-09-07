@@ -39,6 +39,48 @@ type ReactLeaflet =
     static member inline useMapEvent (ev: string * (unit -> unit)) : ReactElement = jsNative
     [<Emit("useMapEvents($0)")>]
     static member inline useMapEvents (ev: Leaflet.LeafletEventHandlerFnMap) : ReactElement = jsNative
+    static member inline attributionControl (properties: IAttributionControlProp list) =
+       Interop.reactApi.createElement (import "AttributionControl" "react-leaflet", createObj !!properties)
+    static member inline circle (properties: ICircleProp list) =
+       Interop.reactApi.createElement (import "Circle" "react-leaflet", createObj !!properties)
+    static member inline circleMarker (properties: ICircleMarkerProp list) =
+       Interop.reactApi.createElement (import "CircleMarker" "react-leaflet", createObj !!properties)
+    static member inline featureGroup (properties: IFeatureGroupProp list) =
+       Interop.reactApi.createElement (import "FeatureGroup" "react-leaflet", createObj !!properties)
+    static member inline geoJSON (properties: IGeoJSONProp list) =
+       Interop.reactApi.createElement (import "GeoJSON" "react-leaflet", createObj !!properties)
+    static member inline imageOverlay (properties: IImageOverlayProp list) =
+       Interop.reactApi.createElement (import "ImageOverlay" "react-leaflet", createObj !!properties)
+    static member inline layerGroup (properties: ILayerGroupProp list) =
+       Interop.reactApi.createElement (import "LayerGroup" "react-leaflet", createObj !!properties)
+    static member inline layersControl (properties: ILayersControlProp list) =
+       Interop.reactApi.createElement (import "LayersControl" "react-leaflet", createObj !!properties)
+    static member inline marker (properties: IMarkerProp list) =
+       Interop.reactApi.createElement (import "Marker" "react-leaflet", createObj !!properties)
+    static member inline pane (properties: IPaneProp list) =
+       Interop.reactApi.createElement (import "Pane" "react-leaflet", createObj !!properties)
+    static member inline polygon (properties: IPolygonProp list) =
+       Interop.reactApi.createElement (import "Polygon" "react-leaflet", createObj !!properties)
+    static member inline polyline (properties: IPolylineProp list) =
+       Interop.reactApi.createElement (import "Polyline" "react-leaflet", createObj !!properties)
+    static member inline popup (properties: IPopupProp list) =
+       Interop.reactApi.createElement (import "Popup" "react-leaflet", createObj !!properties)
+    static member inline rectangle (properties: IRectangleProp list) =
+       Interop.reactApi.createElement (import "Rectangle" "react-leaflet", createObj !!properties)
+    static member inline sVGOverlay (properties: ISVGOverlayProp list) =
+       Interop.reactApi.createElement (import "SVGOverlay" "react-leaflet", createObj !!properties)
+    static member inline scaleControl (properties: IScaleControlProp list) =
+       Interop.reactApi.createElement (import "ScaleControl" "react-leaflet", createObj !!properties)
+    static member inline tileLayer (properties: ITileLayerProp list) =
+       Interop.reactApi.createElement (import "TileLayer" "react-leaflet", createObj !!properties)
+    static member inline tooltip (properties: ITooltipProp list) =
+       Interop.reactApi.createElement (import "Tooltip" "react-leaflet", createObj !!properties)
+    static member inline videoOverlay (properties: IVideoOverlayProp list) =
+       Interop.reactApi.createElement (import "VideoOverlay" "react-leaflet", createObj !!properties)
+    static member inline wMSTileLayer (properties: IWMSTileLayerProp list) =
+       Interop.reactApi.createElement (import "WMSTileLayer" "react-leaflet", createObj !!properties)
+    static member inline zoomControl (properties: IZoomControlProp list) =
+       Interop.reactApi.createElement (import "ZoomControl" "react-leaflet", createObj !!properties)
 
 [<Erase>]
 type mapContainer =
