@@ -1,9 +1,0 @@
-attribution	string	No	Yes	Attribution
-bounds	LatLngBounds	Yes	Yes	MediaOverlay
-children	ReactNode	No	Yes	ParentComponent
-eventHandlers	LeafletEventHandlerFnMap	No	Yes	Evented
-opacity	number	No	Yes	MediaOverlay
-ref	RefObject<Leaflet.ImageOverlay>	No	Yes	Referenceable
-url	string	Yes	Yes
-zIndex	number	No	Yes	MediaOverlay
-

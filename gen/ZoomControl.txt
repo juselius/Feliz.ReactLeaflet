@@ -1,4 +1,0 @@
-eventHandlers	LeafletEventHandlerFnMap	No	Yes	Evented
-position	ControlPosition	No	Yes
-ref	RefObject<Leaflet.Control.Zoom>	No	Yes	Referenceable
-

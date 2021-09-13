@@ -1,7 +1,0 @@
-attribution	string	No	Yes	Attribution
-bounds	LatLngBounds	Yes	Yes	MediaOverlay
-eventHandlers	LeafletEventHandlerFnMap	No	Yes	Evented
-play	boolean	No	Yes
-ref	RefObject<Leaflet.VideoOverlay>	No	Yes	Referenceable
-url	string, string[] or HTMLVideoElement	Yes	Yes
-zIndex	number	No	Yes	MediaOverlay

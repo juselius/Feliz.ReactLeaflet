@@ -1,7 +1,0 @@
-attribution	string	No	Yes	Attribution
-bounds	LatLngBoundsExpression	Yes	Yes
-children	ReactNode	No	Yes	ParentComponent
-eventHandlers	LeafletEventHandlerFnMap	No	Yes	Evented
-pane	string	No	No	Pane
-pathOptions	PathOptions	No	Yes	Path
-ref	RefObject<Leaflet.Rectangle>	No	Yes	Referenceable

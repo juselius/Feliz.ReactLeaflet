@@ -1,5 +1,0 @@
-attribution	string	No	Yes	Attribution
-children	ReactNode	No	Yes	ParentComponent
-eventHandlers	LeafletEventHandlerFnMap	No	Yes	Evented
-pane	string	No	No	Pane
-ref	RefObject<Leaflet.LayerGroup>	No	Yes	Referenceable

@@ -1,5 +1,0 @@
-children	ReactNode	No	Yes	ParentComponent
-className	string	No	No
-name	string	Yes	No
-pane	string	No	No	Pane
-style	CSSProperties	No	No

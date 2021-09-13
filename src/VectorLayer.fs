@@ -9,7 +9,7 @@ type circle =
     static member inline center (value: Leaflet.LatLngExpression) = Interop.mkCircleProp "center" value
     static member inline pathOptions (value: IPathOption list) = unbox<ICircleProp> ("pathOptions", createObj !!value)
     static member inline radius (value: float) = Interop.mkCircleProp "radius" value
-    static member inline eventHandlers (value: pathEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: circleEvent list) = unbox<ICircleProp> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
 [<Erase>]
 type circleMarker =
@@ -28,7 +28,7 @@ type polyline =
     static member inline positions (value: Leaflet.LatLngExpression [][][]) = Interop.mkPolylineProp "positions" value
     static member inline smoothFactor (value: float) = Interop.mkPolylineProp "smoothFactor" value
     static member inline noClip (value: bool) = Interop.mkPolylineProp "noClip" value
-    static member inline eventHandlers (value: pathEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: polylineEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
 [<Erase>]
 type polygon =
@@ -39,7 +39,7 @@ type polygon =
     static member inline positions (value: Leaflet.LatLngExpression [][][]) = Interop.mkPolygonProp "positions" value
     static member inline smoothFactor (value: float) = Interop.mkPolygonProp "smoothFactor" value
     static member inline noClip (value: bool) = Interop.mkPolygonProp "noClip" value
-    static member inline eventHandlers (value: pathEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: polygonEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
 [<Erase>]
 type rectangle =
@@ -47,7 +47,7 @@ type rectangle =
     static member inline bounds (value: Leaflet.LatLngBoundsExpression) = Interop.mkRectangleProp "bounds" value
     static member inline pathOptions (value: Leaflet.PathOptions) = Interop.mkRectangleProp "pathOptions" value
     static member inline popupContainer (value: Leaflet.FeatureGroup<obj>) = Interop.mkRectangleProp "popupContainer" value
-    static member inline eventHandlers (value: pathEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: rectangleEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
 // [<Erase>]
 // type svgOverlay =

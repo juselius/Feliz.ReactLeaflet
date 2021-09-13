@@ -1,8 +1,0 @@
-attribution	string	No	Yes	Attribution
-center	LatLngExpression	Yes	Yes
-children	ReactNode	No	Yes	ParentComponent
-eventHandlers	LeafletEventHandlerFnMap	No	Yes	Evented
-pane	string	No	No	Pane
-pathOptions	PathOptions	No	Yes	Path
-radius	number	Yes	Yes
-ref	RefObject<Leaflet.CircleMarker>	No	Yes	Referenceable
