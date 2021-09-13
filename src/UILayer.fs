@@ -5,7 +5,7 @@ open Fable.Core.JsInterop
 
 [<Erase>]
 type marker =
-    inherit Base.InteractiveLayer<IMarkerProp>
+    inherit BaseProps.InteractiveLayer<IMarkerProp>
     static member inline draggable (value: bool) = Interop.mkMarkerProp "draggable" value
     static member inline icon (value: U2<Leaflet.Icon<obj>, Leaflet.DivIcon>) = Interop.mkMarkerProp "icon" value
     static member inline opacity (value: float) = Interop.mkMarkerProp "opacity" value
@@ -18,10 +18,11 @@ type marker =
     static member inline riseOnHover (value: bool) = Interop.mkMarkerProp "riseOnHover" value
     static member inline riseOffset (value: float) = Interop.mkMarkerProp "riseOffset" value
     static member inline shadowPane (value: string) = Interop.mkMarkerProp "shadowPane" value
+    static member inline eventHandlers (value: MarkerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
 [<Erase>]
 type popup =
-    inherit Base.Layer<IPopupProp>
+    inherit BaseProps.Layer<IPopupProp>
     static member inline onClose (value: unit -> unit) = Interop.mkPopupProp "onClose" value
     static member inline onOpen (value: unit -> unit) = Interop.mkPopupProp "onOpen" value
     static member inline position (value: Leaflet.LatLngExpression) = Interop.mkPopupProp "position" value
@@ -39,11 +40,12 @@ type popup =
     static member inline autoClose (value: bool) = Interop.mkPopupProp "autoClose" value
     static member inline closeOnClick (value: bool) = Interop.mkPopupProp "closeOnClick" value
     static member inline closeOnEscapeKey (value: bool) = Interop.mkPopupProp "closeOnEscapeKey" value
+    static member inline eventHandlers (value: LayerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
 
 [<Erase>]
 type tooltip =
-    inherit Base.Layer<ITooltipProp>
+    inherit BaseProps.Layer<ITooltipProp>
     static member inline onClose (value: unit -> unit) = Interop.mkTooltipProp "onClose" value
     static member inline onOpen (value: unit -> unit) = Interop.mkTooltipProp "onOpen" value
     static member inline position (value: Leaflet.LatLngExpression) = Interop.mkTooltipProp "position" value
@@ -53,3 +55,4 @@ type tooltip =
     static member inline sticky (value: bool) = Interop.mkTooltipProp "sticky" value
     static member inline interactive (value: bool) = Interop.mkTooltipProp "interactive" value
     static member inline opacity (value: float) = Interop.mkTooltipProp "opacity" value
+    static member inline eventHandlers (value: LayerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)

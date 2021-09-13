@@ -1,6 +1,7 @@
 namespace Feliz.ReactLeaflet
 
 open Fable.Core
+open Fable.Core.JsInterop
 open Feliz
 
 [<StringEnum>]
@@ -44,7 +45,7 @@ type Direction =
     | Center
     | Auto
 
-module Base =
+module BaseProps =
     [<Erase>]
     type ReactLeaflet<'a> =
         static member inline attribution (value: string) = unbox<'a> ("attribution", value)
@@ -52,7 +53,7 @@ module Base =
         static member inline key (value: string) = unbox<'a> ("key", value)
         static member inline custom (key: string, value: obj) = unbox<'a> (key, value)
         static member inline children (elements: ReactElement list) = unbox<'a> (prop.children elements)
-        static member inline eventHandlers (value: Leaflet.LeafletEventHandlerFnMap) = unbox<'a> ("eventHandlers", value)
+        // static member inline eventHandlers (value: EventHandler list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
     [<Erase>]
     type Layer<'a> =
@@ -70,7 +71,8 @@ module Base =
     [<Erase>]
     type GridLayer<'a> =
         inherit Layer<'a>
-        static member inline tileSize (value: U2<float, Leaflet.Point>) = unbox<'a> ("tileSize", value)
+        static member inline tileSize (value: float) = unbox<'a> ("tileSize", value)
+        static member inline tileSize (value: Leaflet.Point) = unbox<'a> ("tileSize", value)
         static member inline opacity (value: float) = unbox<'a> ("opacity", value)
         static member inline updateWhenIdle (value: bool) = unbox<'a> ("updateWhenIdle", value)
         static member inline updateWhenZooming (value: bool) = unbox<'a> ("updateWhenZooming", value)
@@ -99,6 +101,7 @@ module Base =
         static member inline fillOpacity (value: float) = unbox<'a> ("fillOpacity", value)
         static member inline fillRule (value: FillRule) = unbox<'a> ("fillRule", value)
         static member inline renderer (value: Leaflet.Renderer) = unbox<'a> ("renderer", value)
+
 
 [<Erase>]
 type IMapContainerProp = interface end
@@ -155,10 +158,6 @@ type ISVGOverlayProp = interface end
 type IScaleControlProp = interface end
 
 [<Erase>]
-type ITileLayerProp = Feliz.IReactProperty
-
-
-[<Erase>]
 type ITooltipProp = interface end
 
 [<Erase>]
@@ -174,4 +173,4 @@ type IZoomControlProp = interface end
 type IPathOption = interface end
 
 [<Erase>]
-type pathOptions = Base.Path<IPathOption>
+type ITileLayerProp = Feliz.IReactProperty

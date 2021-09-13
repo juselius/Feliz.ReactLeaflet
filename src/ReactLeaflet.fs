@@ -60,7 +60,7 @@ type ReactLeaflet =
 
 [<Erase>]
 type mapContainer =
-    inherit Base.ReactLeaflet<IMapContainerProp>
+    inherit BaseProps.ReactLeaflet<IMapContainerProp>
     static member inline bounds (value: Leaflet.LatLngBoundsExpression) = Interop.mkMapContainerProp "bounds" value
     static member inline boundsOptions (value: Leaflet.FitBoundsOptions) = Interop.mkMapContainerProp "boundsOption" value
     static member inline className (value: string) = Interop.mkMapContainerProp "className" value
@@ -119,50 +119,20 @@ type mapContainer =
     static member inline paddingTopLeft (value: Leaflet.PointExpression) = Interop.mkMapContainerProp "paddingTopLeft" value
     static member inline paddingBottomRight (value: Leaflet.PointExpression) = Interop.mkMapContainerProp "paddingBottomRight" value
     static member inline padding (value: Leaflet.PointExpression) = Interop.mkMapContainerProp "padding" value
-    static member inline onClick (value: (Leaflet.LeafletMouseEvent -> unit)) = Interop.mkMapContainerProp "onClick" value
-    static member inline onDblClick (value: (Leaflet.LeafletMouseEvent -> unit)) = Interop.mkMapContainerProp "onDblClick" value
-    static member inline onMouseDown (value: (Leaflet.LeafletMouseEvent -> unit)) = Interop.mkMapContainerProp "onMouseDown" value
-    static member inline onMouseUp (value: (Leaflet.LeafletMouseEvent -> unit)) = Interop.mkMapContainerProp "onMouseUp" value
-    static member inline onMouseOver (value: (Leaflet.LeafletMouseEvent -> unit)) = Interop.mkMapContainerProp "onMouseOver" value
-    static member inline onMouseOut (value: (Leaflet.LeafletMouseEvent -> unit)) = Interop.mkMapContainerProp "onMouseOut" value
-    static member inline onMouseMove (value: (Leaflet.LeafletMouseEvent -> unit)) = Interop.mkMapContainerProp "onMouseMove" value
-    static member inline onContextMenu (value: (Leaflet.LeafletMouseEvent -> unit)) = Interop.mkMapContainerProp "onContextMenu" value
-    static member inline onFocus (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onFocus" value
-    static member inline onBlur (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onBlur" value
-    static member inline onPreClick (value: (Leaflet.LeafletMouseEvent -> unit)) = Interop.mkMapContainerProp "onPreClick" value
-    static member inline onLoad (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onLoad" value
-    static member inline onUnload (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onUnload" value
-    static member inline onViewReset (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onViewReset" value
-    static member inline onMove (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onMove" value
-    static member inline onMoveStart (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onMoveStart" value
-    static member inline onMoveEnd (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onMoveEnd" value
-    static member inline onDragStart (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onDragStart" value
-    static member inline onDrag (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onDrag" value
-    static member inline onDragEnd (value: (Leaflet.DragEndEvent -> unit)) = Interop.mkMapContainerProp "onDragEnd" value
-    static member inline onZoomStart (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onZoomStart" value
-    static member inline onZoomEnd (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onZoomEnd" value
-    static member inline onZoomLevelsChange (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onZoomLevelsChange" value
-    static member inline onResize (value: (Leaflet.ResizeEvent -> unit)) = Interop.mkMapContainerProp "onResize" value
-    static member inline onAutopaSstart (value: (Leaflet.LeafletEvent -> unit)) = Interop.mkMapContainerProp "onAutopaSstart" value
-    static member inline onLayerAdd (value: (Leaflet.LayerEvent -> unit)) = Interop.mkMapContainerProp "onLayerAdd" value
-    static member inline onLayerRemove (value: (Leaflet.LayerEvent -> unit)) = Interop.mkMapContainerProp "onLayerRemove" value
-    static member inline onBaseLayerChange (value: (Leaflet.LayersControlEvent -> unit)) = Interop.mkMapContainerProp "onBaseLayerChange" value
-    static member inline onOverLayerAdd (value: (Leaflet.LayersControlEvent -> unit)) = Interop.mkMapContainerProp "onOverLayerAdd" value
-    static member inline onOverLayerRemove (value: (Leaflet.LayersControlEvent -> unit)) = Interop.mkMapContainerProp "onOverLayerRemove" value
-    static member inline onLocationFound (value: (Leaflet.LocationEvent -> unit)) = Interop.mkMapContainerProp "onLocationFound" value
-    static member inline onLocationError (value: (Leaflet.ErrorEvent -> unit)) = Interop.mkMapContainerProp "onLocationError" value
-    static member inline onPopupOpen (value: (Leaflet.PopupEvent -> unit)) = Interop.mkMapContainerProp "onPopupOpen" value
-    static member inline onPopupClose (value: (Leaflet.PopupEvent -> unit)) = Interop.mkMapContainerProp "onPopupClose" value
+    static member inline eventHandlers (value: MapEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
 [<Erase>]
-type layerGroup = Base.Layer<ILayerGroupProp>
+type layerGroup = BaseProps.Layer<ILayerGroupProp>
 
 [<Erase>]
-type featureGroup = Base.Layer<IFeatureGroupProp>
+type featureGroup = BaseProps.Layer<IFeatureGroupProp>
+
+[<Erase>]
+type pathOptions = BaseProps.Path<IPathOption>
 
 [<Erase>]
 type geoJSON =
-    inherit Base.Layer<IGeoJSONProp>
+    inherit BaseProps.Layer<IGeoJSONProp>
     static member inline pointToLayer (value: float * float -> obj) = Interop.mkGeoJSONProp "pointToLayer" value
     static member inline style (value: Leaflet.PathOptions) = Interop.mkGeoJSONProp "style" value
     static member inline style (value: Leaflet.StyleFunction<_>) = Interop.mkGeoJSONProp "style" value
@@ -170,16 +140,12 @@ type geoJSON =
     static member inline filter (value: obj -> bool) = Interop.mkGeoJSONProp "filter" value
     static member inline coordsToLatLng (value: obj -> obj) = Interop.mkGeoJSONProp "coordsToLatLng" value
     static member inline markersInheritOptions (value: bool) = Interop.mkGeoJSONProp "markersInheritOptions" value
-
+    static member inline eventHandlers (value: GeoJSONEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
 [<Erase>]
-type Pane =
-    static member inline children (value: ReactElement) = Interop.mkPaneProp "children" value
+type pane =
     static member inline className (value: string) = Interop.mkPaneProp "className" value
     static member inline name (value: string) = Interop.mkPaneProp "name" value
     static member inline pane (value: string) = Interop.mkPaneProp "pane" value
-    static member inline style (value: IStyleAttribute list) = unbox ("style", keyValueList CaseRules.LowerFirst value)
+    static member inline style (value: IStyleAttribute list) = unbox ("style", createObj !!value)
     static member inline children (elements: ReactElement list) = unbox<IPaneProp> (prop.children elements)
-
-
-
