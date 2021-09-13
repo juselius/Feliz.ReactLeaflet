@@ -55,11 +55,13 @@ type rectangle =
     static member inline eventHandlers (value: rectangleEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
     static member inline ref (value: IRefValue<Leaflet.Rectangle<_>>) = Interop.mkRectangleProp "ref" value
 
-// [<Erase>]
-// type svgOverlay =
-//     static member inline attributes (value: Record<string) = Interop.mk string>Prop "attributes" value,SVGOverlay
-//     static member inline attribution (value: string) = Interop.mkSVGOverlayProp "attribution" value
-//     static member inline children (value: ReactElement) = Interop.mkSVGOverlayProp "children" value
-//     static member inline pane (value: string) = Interop.mkSVGOverlayProp "pane" value
-//     static member inline ref (value: IRefValue<Leaflet.SVGOverlay>) = Interop.mkSVGOverlayProp "ref" value
-//     static member inline eventHandlers (value: PathEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+[<Erase>]
+type svgOverlay =
+    inherit BaseProps.InteractiveLayer<ISVGOverlayProp>
+    static member inline bounds (value: Leaflet.LatLngBounds) = Interop.mkSVGOverlayProp "bounds" value
+    static member inline opacity (value: float) = Interop.mkSVGOverlayProp "opacity" value
+    static member inline url (value: string) = Interop.mkSVGOverlayProp "url" value
+    static member inline alt (value: string) = Interop.mkSVGOverlayProp "alt" value
+    static member inline crossOrigin (value: bool) = Interop.mkSVGOverlayProp "crossOrigin" value
+    // static member inline eventHandlers (value: svgOverlayEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    // static member inline ref (value: IRefValue<Leaflet.ImageOverlay>) = Interop.mkImageOverlayProp "ref" value

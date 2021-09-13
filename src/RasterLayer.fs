@@ -51,15 +51,20 @@ type imageOverlay =
     static member inline eventHandlers (value: imageOverlayEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
     static member inline ref (value: IRefValue<Leaflet.ImageOverlay>) = Interop.mkImageOverlayProp "ref" value
 
-// [<Erase>]
-// type videoOverlay =
-//     static member inline attribution (value: string) = Interop.mkVideoOverlayProp "attribution" value
-//     static member inline bounds (value: Leaflet.LatLngBounds) = Interop.mkVideoOverlayProp "bounds" value
-//     static member inline eventHandlers (value: Leaflet.LeafletEventHandlerFnMap) = Interop.mkVideoOverlayProp "eventHandlers" value
-//     static member inline play (value: bool) = Interop.mkVideoOverlayProp "play" value
-//     static member inline ref (value: IRefValue<Leaflet.VideoOverlay>) = Interop.mkVideoOverlayProp "ref" value
-//     static member inline url (value: string) = Interop.mkVideoOverlayProp "url" value
-//     static member inline url (value: string []) = Interop.mkVideoOverlayProp "url" value
-//     static member inline url (value: HTMLVideoElement) = Interop.mkVideoOverlayProp "url" value
-//     static member inline zIndex (value: float) = Interop.mkVideoOverlayProp "zIndex" value
-    // static member inline eventHandlers (value: ImageOverlayEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+[<Erase>]
+type videoOverlay =
+    inherit BaseProps.InteractiveLayer<IVideoOverlayProp>
+    static member inline play (value: bool) = Interop.mkVideoOverlayProp "play" value
+    static member inline zIndex (value: float) = Interop.mkVideoOverlayProp "zIndex" value
+    static member inline bounds (value: Leaflet.LatLngBounds) = Interop.mkVideoOverlayProp "bounds" value
+    static member inline opacity (value: float) = Interop.mkVideoOverlayProp "opacity" value
+    static member inline url (value: string) = Interop.mkVideoOverlayProp "url" value
+    static member inline url (value: string []) = Interop.mkVideoOverlayProp "url" value
+    static member inline alt (value: string) = Interop.mkVideoOverlayProp "alt" value
+    static member inline crossOrigin (value: bool) = Interop.mkVideoOverlayProp "crossOrigin" value
+    static member inline autoplay (value: bool) = Interop.mkVideoOverlayProp "autoplay" value
+    static member inline loop (value: bool) = Interop.mkVideoOverlayProp "loop" value
+    static member inline keepAspectRatio (value: bool) = Interop.mkVideoOverlayProp "keepAspectRatio" value
+    static member inline muted (value: bool) = Interop.mkVideoOverlayProp "muted" value
+    // static member inline eventHandlers (value: imageOverlayEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    // static member inline ref (value: IRefValue<Leaflet.VideoOverlay>) = Interop.mkVideoOverlayProp "ref" value
