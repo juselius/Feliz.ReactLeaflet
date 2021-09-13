@@ -119,7 +119,7 @@ type mapContainer =
     static member inline paddingTopLeft (value: Leaflet.PointExpression) = Interop.mkMapContainerProp "paddingTopLeft" value
     static member inline paddingBottomRight (value: Leaflet.PointExpression) = Interop.mkMapContainerProp "paddingBottomRight" value
     static member inline padding (value: Leaflet.PointExpression) = Interop.mkMapContainerProp "padding" value
-    static member inline eventHandlers (value: MapEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: mapEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
 [<Erase>]
 type layerGroup = BaseProps.Layer<ILayerGroupProp>
@@ -140,7 +140,7 @@ type geoJSON =
     static member inline filter (value: obj -> bool) = Interop.mkGeoJSONProp "filter" value
     static member inline coordsToLatLng (value: obj -> obj) = Interop.mkGeoJSONProp "coordsToLatLng" value
     static member inline markersInheritOptions (value: bool) = Interop.mkGeoJSONProp "markersInheritOptions" value
-    static member inline eventHandlers (value: GeoJSONEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: geoJSONEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
 [<Erase>]
 type pane =

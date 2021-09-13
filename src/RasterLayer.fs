@@ -14,7 +14,7 @@ type tileLayer =
     static member inline zoomReverse (value: bool) = Interop.mkTileLayerProp "zoomReverse" value
     static member inline detectRetina (value: bool) = Interop.mkTileLayerProp "detectRetina" value
     static member inline crossOrigin (value: bool) = Interop.mkTileLayerProp "crossOrigin" value
-    static member inline eventHandlers (value: GridLayerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: gridLayerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
 
 [<Erase>]
@@ -36,7 +36,7 @@ type wmsTileLayer =
     static member inline version (value: string) = Interop.mkWMSTileLayerProp "version" value
     static member inline crs (value: Leaflet.CRS) = Interop.mkWMSTileLayerProp "crs" value
     static member inline uppercase (value: bool) = Interop.mkWMSTileLayerProp "uppercase" value
-    static member inline eventHandlers (value: GridLayerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: gridLayerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
 [<Erase>]
 type imageOverlay =
@@ -46,7 +46,7 @@ type imageOverlay =
     static member inline url (value: string) = Interop.mkImageOverlayProp "url" value
     static member inline alt (value: string) = Interop.mkImageOverlayProp "alt" value
     static member inline crossOrigin (value: bool) = Interop.mkImageOverlayProp "crossOrigin" value
-    static member inline eventHandlers (value: ImageOverlayEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: imageOverlayEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
 // [<Erase>]
 // type videoOverlay =
