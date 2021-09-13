@@ -56,6 +56,9 @@ let indexView model dispatch =
                         pathOptions.opacity 0.5
                         pathOptions.weight 2.0
                     ]
+                    circle.eventHandlers [
+                        circleEvent.click (fun _ -> Fable.Core.JS.console.log "circle clicked")
+                    ]
                     circle.center tromso
                     circle.radius 6000.0
                 ]
