@@ -30,7 +30,7 @@ module BaseEvents =
        static member inline error (handler: (Leaflet.LeafletEvent -> unit)) = createObj [ "error" ==> handler ]
 
 [<Erase>]
-type MapEvents =
+type MapEvent =
     inherit BaseEvents.InteractiveLayerEvents
     static member inline layeradd (handler: (Leaflet.LayerEvent -> unit)) = createObj [ "layeradd" ==> handler ]
     static member inline layerremove (handler: (Leaflet.LayerEvent -> unit)) = createObj [ "layerremove" ==> handler ]
@@ -61,17 +61,6 @@ type MapEvents =
     static member inline keyup (handler: (Leaflet.LeafletKeyboardEvent -> unit)) = createObj [ "keyup" ==> handler ]
     static member inline preclick (handler: (Leaflet.LeafletMouseEvent -> unit)) = createObj [ "preclick" ==> handler ]
 
-[<Erase>]
-type Misc =
-    static member inline focus (handler: (Leaflet.LeafletEvent -> unit)) = createObj [ "focus" ==> handler ]
-    static member inline blur (handler: (Leaflet.LeafletEvent -> unit)) = createObj [ "blur" ==> handler ]
-    static member inline autopasstart (handler: (Leaflet.LeafletEvent -> unit)) = createObj [ "autopasstart" ==> handler ]
-    static member inline eachfeature (handler: obj -> unit) = createObj [ "eachfeature" ==> handler ]
-    static member inline close (handler: unit -> unit) = createObj [ "close" ==> handler ]
-    static member inline ``open`` (handler: unit -> unit) = createObj [ "open" ==> handler ]
-    static member inline add (handler: (Leaflet.LeafletEvent -> unit)) = createObj [ "add" ==> handler ]
-    static member inline remove (handler: (Leaflet.LeafletEvent -> unit)) = createObj [ "remove" ==> handler ]
-
 type MarkerEvent =
     inherit BaseEvents.InteractiveLayerEvents
     static member inline move (handler: (Leaflet.LeafletEvent -> unit)) = createObj [ "move" ==> handler ]
@@ -80,7 +69,6 @@ type MarkerEvent =
     static member inline drag (handler: (Leaflet.LeafletEvent -> unit)) = createObj [ "drag" ==> handler ]
     static member inline dragend (handler: (Leaflet.DragEndEvent -> unit)) = createObj [ "dragend" ==> handler ]
     static member inline moveend (handler: (Leaflet.LeafletEvent -> unit)) = createObj [ "moveend" ==> handler ]
-
 
 [<Erase>]
 type LayerEvent = BaseEvents.LayerEvents
@@ -114,8 +102,3 @@ type ImageOverlayEvent =
     inherit BaseEvents.InteractiveLayerEvents
     static member inline load (handler: (Leaflet.LeafletEvent -> unit)) = createObj [ "load" ==> handler ]
     static member inline error (handler: (Leaflet.LeafletEvent -> unit)) = createObj [ "error" ==> handler ]
-
-// type PopupEvent = BaseEvents.LayerEvents
-// type TooltipEvent = BaseEvents.LayerEvents
-// type WMSTileLayerEvent = BaseEvents.GridLayerEvents
-// type TileLayerEvent = BaseEvents.GridLayerEvents
