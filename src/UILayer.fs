@@ -2,6 +2,7 @@ namespace Feliz.ReactLeaflet
 
 open Fable.Core
 open Fable.Core.JsInterop
+open Feliz
 
 [<Erase>]
 type marker =
@@ -19,6 +20,7 @@ type marker =
     static member inline riseOffset (value: float) = Interop.mkMarkerProp "riseOffset" value
     static member inline shadowPane (value: string) = Interop.mkMarkerProp "shadowPane" value
     static member inline eventHandlers (value: markerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.Marker<_>>) = Interop.mkMarkerProp "ref" value
 
 [<Erase>]
 type popup =
@@ -41,6 +43,7 @@ type popup =
     static member inline closeOnClick (value: bool) = Interop.mkPopupProp "closeOnClick" value
     static member inline closeOnEscapeKey (value: bool) = Interop.mkPopupProp "closeOnEscapeKey" value
     static member inline eventHandlers (value: layerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.Popup>) = Interop.mkPopupProp "ref" value
 
 
 [<Erase>]
@@ -56,3 +59,4 @@ type tooltip =
     static member inline interactive (value: bool) = Interop.mkTooltipProp "interactive" value
     static member inline opacity (value: float) = Interop.mkTooltipProp "opacity" value
     static member inline eventHandlers (value: layerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.Tooltip>) = Interop.mkTooltipProp "ref" value

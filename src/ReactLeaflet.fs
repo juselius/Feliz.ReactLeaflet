@@ -120,15 +120,22 @@ type mapContainer =
     static member inline paddingBottomRight (value: Leaflet.PointExpression) = Interop.mkMapContainerProp "paddingBottomRight" value
     static member inline padding (value: Leaflet.PointExpression) = Interop.mkMapContainerProp "padding" value
     static member inline eventHandlers (value: mapEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.Map>) = Interop.mkMapContainerProp "ref" value
 
 [<Erase>]
-type layerGroup = BaseProps.Layer<ILayerGroupProp>
+type layerGroup =
+    inherit BaseProps.Layer<ILayerGroupProp>
+    static member inline ref (value: IRefValue<Leaflet.LayerGroup<_>>) = Interop.mkLayerGroupProp "ref" value
 
 [<Erase>]
-type featureGroup = BaseProps.Layer<IFeatureGroupProp>
+type featureGroup =
+    inherit BaseProps.Layer<IFeatureGroupProp>
+    static member inline ref (value: IRefValue<Leaflet.FeatureGroup<_>>) = Interop.mkFeatureGroupProp "ref" value
 
 [<Erase>]
-type pathOptions = BaseProps.Path<IPathOption>
+type pathOptions =
+    inherit BaseProps.Path<IPathOption>
+    static member inline ref (value: IRefValue<Leaflet.Path>) = Interop.mkPathOption "ref" value
 
 [<Erase>]
 type geoJSON =
@@ -141,6 +148,7 @@ type geoJSON =
     static member inline coordsToLatLng (value: obj -> obj) = Interop.mkGeoJSONProp "coordsToLatLng" value
     static member inline markersInheritOptions (value: bool) = Interop.mkGeoJSONProp "markersInheritOptions" value
     static member inline eventHandlers (value: geoJSONEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.GeoJSON<_>>) = Interop.mkGeoJSONProp "ref" value
 
 [<Erase>]
 type pane =
@@ -149,3 +157,4 @@ type pane =
     static member inline pane (value: string) = Interop.mkPaneProp "pane" value
     static member inline style (value: IStyleAttribute list) = unbox ("style", createObj !!value)
     static member inline children (elements: ReactElement list) = unbox<IPaneProp> (prop.children elements)
+    static member inline ref (value: IRefValue<Leaflet.DefaultMapPanes>) = Interop.mkPaneProp "ref" value

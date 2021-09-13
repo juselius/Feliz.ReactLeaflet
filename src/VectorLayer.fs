@@ -2,6 +2,7 @@ namespace Feliz.ReactLeaflet
 
 open Fable.Core
 open Fable.Core.JsInterop
+open Feliz
 
 [<Erase>]
 type circle =
@@ -10,6 +11,7 @@ type circle =
     static member inline pathOptions (value: IPathOption list) = unbox<ICircleProp> ("pathOptions", createObj !!value)
     static member inline radius (value: float) = Interop.mkCircleProp "radius" value
     static member inline eventHandlers (value: circleEvent list) = unbox<ICircleProp> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.Circle<_>>) = Interop.mkCircleProp "ref" value
 
 [<Erase>]
 type circleMarker =
@@ -18,6 +20,7 @@ type circleMarker =
     static member inline pathOptions (value: Leaflet.PathOptions) = Interop.mkCircleMarkerProp "pathOptions" value
     static member inline radius (value: float) = Interop.mkCircleMarkerProp "radius" value
     static member inline eventHandlers (value: circleMarkerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.CircleMarker<_>>) = Interop.mkCircleMarkerProp "ref" value
 
 [<Erase>]
 type polyline =
@@ -29,6 +32,7 @@ type polyline =
     static member inline smoothFactor (value: float) = Interop.mkPolylineProp "smoothFactor" value
     static member inline noClip (value: bool) = Interop.mkPolylineProp "noClip" value
     static member inline eventHandlers (value: polylineEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.Polyline<_, _>>) = Interop.mkPolylineProp "ref" value
 
 [<Erase>]
 type polygon =
@@ -40,6 +44,7 @@ type polygon =
     static member inline smoothFactor (value: float) = Interop.mkPolygonProp "smoothFactor" value
     static member inline noClip (value: bool) = Interop.mkPolygonProp "noClip" value
     static member inline eventHandlers (value: polygonEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.Polygon<_>>) = Interop.mkPolygonProp "ref" value
 
 [<Erase>]
 type rectangle =
@@ -48,6 +53,7 @@ type rectangle =
     static member inline pathOptions (value: Leaflet.PathOptions) = Interop.mkRectangleProp "pathOptions" value
     static member inline popupContainer (value: Leaflet.FeatureGroup<obj>) = Interop.mkRectangleProp "popupContainer" value
     static member inline eventHandlers (value: rectangleEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.Rectangle<_>>) = Interop.mkRectangleProp "ref" value
 
 // [<Erase>]
 // type svgOverlay =

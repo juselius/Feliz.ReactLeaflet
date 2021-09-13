@@ -2,6 +2,7 @@ namespace Feliz.ReactLeaflet
 
 open Fable.Core
 open Fable.Core.JsInterop
+open Feliz
 
 [<Erase>]
 type tileLayer =
@@ -15,7 +16,7 @@ type tileLayer =
     static member inline detectRetina (value: bool) = Interop.mkTileLayerProp "detectRetina" value
     static member inline crossOrigin (value: bool) = Interop.mkTileLayerProp "crossOrigin" value
     static member inline eventHandlers (value: gridLayerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
-
+    static member inline ref (value: IRefValue<Leaflet.TileLayerOptions>) = Interop.mkTileLayerProp "ref" value
 
 [<Erase>]
 type wmsTileLayer =
@@ -37,6 +38,7 @@ type wmsTileLayer =
     static member inline crs (value: Leaflet.CRS) = Interop.mkWMSTileLayerProp "crs" value
     static member inline uppercase (value: bool) = Interop.mkWMSTileLayerProp "uppercase" value
     static member inline eventHandlers (value: gridLayerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.WMSOptions>) = Interop.mkWMSTileLayerProp "ref" value
 
 [<Erase>]
 type imageOverlay =
@@ -47,6 +49,7 @@ type imageOverlay =
     static member inline alt (value: string) = Interop.mkImageOverlayProp "alt" value
     static member inline crossOrigin (value: bool) = Interop.mkImageOverlayProp "crossOrigin" value
     static member inline eventHandlers (value: imageOverlayEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.ImageOverlay>) = Interop.mkImageOverlayProp "ref" value
 
 // [<Erase>]
 // type videoOverlay =

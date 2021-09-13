@@ -49,11 +49,10 @@ module BaseProps =
     [<Erase>]
     type ReactLeaflet<'a> =
         static member inline attribution (value: string) = unbox<'a> ("attribution", value)
-        static member inline ref (value: (obj -> unit)) = unbox<'a> ("ref", value)
+        // static member inline ref (value: (obj -> unit)) = unbox<'a> ("ref", value)
         static member inline key (value: string) = unbox<'a> ("key", value)
         static member inline custom (key: string, value: obj) = unbox<'a> (key, value)
         static member inline children (elements: ReactElement list) = unbox<'a> (prop.children elements)
-        // static member inline eventHandlers (value: EventHandler list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
 
     [<Erase>]
     type Layer<'a> =
