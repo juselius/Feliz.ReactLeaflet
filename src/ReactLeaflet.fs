@@ -61,7 +61,8 @@ type ReactLeaflet =
 [<Erase>]
 type mapContainer =
     inherit BaseProps.ReactLeaflet<IMapContainerProp>
-    static member inline bounds (value: Leaflet.LatLngBoundsExpression) = Interop.mkMapContainerProp "bounds" value
+    static member inline bounds (value: LatLngBounds) = Interop.mkMapContainerProp "bounds" value
+    static member inline bounds (value: LatLngAltBounds) = Interop.mkMapContainerProp "bounds" value
     static member inline boundsOptions (value: Leaflet.FitBoundsOptions) = Interop.mkMapContainerProp "boundsOption" value
     static member inline className (value: string) = Interop.mkMapContainerProp "className" value
     static member inline id (value: string) = Interop.mkMapContainerProp "id" value
@@ -103,8 +104,10 @@ type mapContainer =
     static member inline touchZoom (value: Leaflet.Zoom) = Interop.mkMapContainerProp "touchZoom" value
     static member inline bounceAtZoomLimits (value: bool) = Interop.mkMapContainerProp "bounceAtZoomLimits" value
     static member inline animate (value: bool) = Interop.mkMapContainerProp "animate" value
-    static member inline center (value: Leaflet.LatLngExpression) = Interop.mkMapContainerProp "center" value
-    static member inline maxBounds (value: Leaflet.LatLngBoundsExpression) = Interop.mkMapContainerProp "maxBounds" value
+    static member inline center (value: LatLng) = Interop.mkMapContainerProp "center" value
+    static member inline center (value: LatLngAlt) = Interop.mkMapContainerProp "center" value
+    static member inline maxBounds (value: LatLngBounds) = Interop.mkMapContainerProp "maxBounds" value
+    static member inline maxBounds (value: LatLngAltBounds) = Interop.mkMapContainerProp "maxBounds" value
     static member inline minZoom (value: float) = Interop.mkMapContainerProp "minZoom" value
     static member inline useFlyTo (value: bool) = Interop.mkMapContainerProp "useFlyTo" value
     static member inline zoom (value: float) = Interop.mkMapContainerProp "zoom" value
@@ -116,9 +119,9 @@ type mapContainer =
     static member inline enableHighAccuracy (value: bool) = Interop.mkMapContainerProp "enableHighAccuracy" value
     static member inline duration (value: float) = Interop.mkMapContainerProp "duration" value
     static member inline noMoveStart (value: bool) = Interop.mkMapContainerProp "noMoveStart" value
-    static member inline paddingTopLeft (value: Leaflet.PointExpression) = Interop.mkMapContainerProp "paddingTopLeft" value
-    static member inline paddingBottomRight (value: Leaflet.PointExpression) = Interop.mkMapContainerProp "paddingBottomRight" value
-    static member inline padding (value: Leaflet.PointExpression) = Interop.mkMapContainerProp "padding" value
+    static member inline paddingTopLeft (value: Point) = Interop.mkMapContainerProp "paddingTopLeft" value
+    static member inline paddingBottomRight (value: Point) = Interop.mkMapContainerProp "paddingBottomRight" value
+    static member inline padding (value: Point) = Interop.mkMapContainerProp "padding" value
     static member inline eventHandlers (value: mapEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
     static member inline ref (value: IRefValue<Leaflet.Map>) = Interop.mkMapContainerProp "ref" value
 

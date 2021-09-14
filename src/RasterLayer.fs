@@ -8,7 +8,8 @@ open Feliz
 type tileLayer =
     inherit BaseProps.GridLayer<ITileLayerProp>
     static member inline url (value: string) = Interop.mkTileLayerProp "url" value
-    static member inline subdomains (value: U2<string, ResizeArray<string>>) = Interop.mkTileLayerProp "subdomains" value
+    static member inline subdomains (value: string) = Interop.mkTileLayerProp "subdomains" value
+    static member inline subdomains (value: ResizeArray<string>) = Interop.mkTileLayerProp "subdomains" value
     static member inline errorTileUrl (value: string) = Interop.mkTileLayerProp "errorTileUrl" value
     static member inline zoomOffset (value: float) = Interop.mkTileLayerProp "zoomOffset" value
     static member inline tms (value: bool) = Interop.mkTileLayerProp "tms" value
@@ -23,7 +24,8 @@ type wmsTileLayer =
     inherit BaseProps.GridLayer<IWMSTileLayerProp>
     static member inline ``params`` (value: Leaflet.WMSParams) = Interop.mkWMSTileLayerProp "params" value
     static member inline url (value: string) = Interop.mkWMSTileLayerProp "url" value
-    static member inline subdomains (value: U2<string, ResizeArray<string>>) = Interop.mkWMSTileLayerProp "subdomains" value
+    static member inline subdomains (value: string) = Interop.mkWMSTileLayerProp "subdomains" value
+    static member inline subdomains (value: ResizeArray<string>) = Interop.mkWMSTileLayerProp "subdomains" value
     static member inline errorTileUrl (value: string) = Interop.mkWMSTileLayerProp "errorTileUrl" value
     static member inline zoomOffset (value: float) = Interop.mkWMSTileLayerProp "zoomOffset" value
     static member inline tms (value: bool) = Interop.mkWMSTileLayerProp "tms" value
@@ -43,7 +45,8 @@ type wmsTileLayer =
 [<Erase>]
 type imageOverlay =
     inherit BaseProps.InteractiveLayer<IImageOverlayProp>
-    static member inline bounds (value: Leaflet.LatLngBounds) = Interop.mkImageOverlayProp "bounds" value
+    static member inline bounds (value: LatLngBounds) = Interop.mkImageOverlayProp "bounds" value
+    static member inline bounds (value: LatLngAltBounds) = Interop.mkImageOverlayProp "bounds" value
     static member inline opacity (value: float) = Interop.mkImageOverlayProp "opacity" value
     static member inline url (value: string) = Interop.mkImageOverlayProp "url" value
     static member inline alt (value: string) = Interop.mkImageOverlayProp "alt" value
@@ -56,7 +59,8 @@ type videoOverlay =
     inherit BaseProps.InteractiveLayer<IVideoOverlayProp>
     static member inline play (value: bool) = Interop.mkVideoOverlayProp "play" value
     static member inline zIndex (value: float) = Interop.mkVideoOverlayProp "zIndex" value
-    static member inline bounds (value: Leaflet.LatLngBounds) = Interop.mkVideoOverlayProp "bounds" value
+    static member inline bounds (value: LatLngBounds) = Interop.mkVideoOverlayProp "bounds" value
+    static member inline bounds (value: LatLngAltBounds) = Interop.mkVideoOverlayProp "bounds" value
     static member inline opacity (value: float) = Interop.mkVideoOverlayProp "opacity" value
     static member inline url (value: string) = Interop.mkVideoOverlayProp "url" value
     static member inline url (value: string []) = Interop.mkVideoOverlayProp "url" value
