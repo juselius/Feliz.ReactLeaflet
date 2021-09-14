@@ -32,11 +32,12 @@ let theMap () =
     let map = ReactLeaflet.useMap ()
     map
 
-let tromso = Fable.Core.U3.Case3 (69.67, 18.95)
+let tromso = 69.67, 18.95
+let lyngen = [| (69.15, 19.65); (69.99, 20.5) |]
 
 let indexView model dispatch =
     Html.div [
-        Html.h1 "Feliz.RactLeaflet"
+        Html.h1 "Feliz.ReactLeaflet test bed"
         Html.hr []
         ReactLeaflet.mapContainer [
             mapContainer.id "foo"
@@ -61,6 +62,18 @@ let indexView model dispatch =
                     ]
                     circle.center tromso
                     circle.radius 6000.0
+                ]
+                ReactLeaflet.rectangle [
+                    rectangle.pathOptions [
+                        pathOptions.color "green"
+                        pathOptions.fillColor "green"
+                        pathOptions.opacity 0.2
+                        pathOptions.weight 4.0
+                    ]
+                    rectangle.eventHandlers [
+                        rectangleEvent.click (fun _ -> Fable.Core.JS.console.log "rectangle clicked")
+                    ]
+                    rectangle.bounds lyngen
                 ]
             //     // ReactLeaflet.rectangle [
             //         // rectangle.foobar "foo"
