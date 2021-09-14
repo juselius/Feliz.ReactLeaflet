@@ -1,219 +1,187 @@
-namespace Feliz.Recharts
+namespace Feliz.ReactLeaflet
 
 open Fable.Core
+open Fable.Core.JsInterop
+open Feliz
+
+type LatLng = float * float
+type LatLngAlt = float * float * float
+
+type LatLngBounds = (float * float) array
+type LatLngAltBounds = (float * float * float) array
+
+type Point = int * int
+type Bounds = (int * int) array
+
+
+[<StringEnum>]
+[<RequireQualifiedAccess>]
+type LineCapShape =
+    | Butt
+    | Round
+    | Square
+    | Inherit
+
+[<StringEnum>]
+[<RequireQualifiedAccess>]
+type LineJoinShape =
+    | Miter
+    | Round
+    | Bevel
+    | Inherit
+
+[<StringEnum>]
+[<RequireQualifiedAccess>]
+type FillRule =
+    | Nonzero
+    | Evenodd
+    | Inherit
+
+[<StringEnum>]
+[<RequireQualifiedAccess>]
+type ControlPosition =
+    | Topleft
+    | Topright
+    | Bottomleft
+    | Bottomright
+
+[<StringEnum>]
+[<RequireQualifiedAccess>]
+type Direction =
+    | Right
+    | Left
+    | Top
+    | Bottom
+    | Center
+    | Auto
 
 [<Erase>]
-type IDotProperties<'a> =
-    abstract cy : float
-    abstract cx : float
-    abstract dataKey : string
-    abstract height : float
-    abstract key : string
-    abstract index : int
-    abstract stroke : string
-    abstract fill : string
-    abstract value : float
-    abstract payload : 'a
-
-type IAxisDomain = interface end
+type IMapContainerProp = interface end
 
 [<Erase>]
-type domain =
-    static member inline min : IAxisDomain = unbox "dataMin"
-    static member inline max : IAxisDomain = unbox "dataMax"
-    static member inline auto : IAxisDomain = unbox "auto"
-    static member inline constant (value: int) : IAxisDomain = unbox value
-    static member inline calculate (f: float -> float) : IAxisDomain = unbox f
-    static member inline calculate (f: int -> int) : IAxisDomain = unbox f
-    static member inline calculate (f: int -> float) : IAxisDomain = unbox f
-    static member inline calculate (f: float -> int) : IAxisDomain = unbox f
+type IAttributionControlProp = interface end
 
 [<Erase>]
-type ILabelProperties =
-    abstract index : int
-    abstract offset : int
-    abstract x : float
-    abstract y : float
-    abstract value : float
+type ICircleProp = interface end
 
 [<Erase>]
-type IXAxisTickPayload =
-    abstract index : int
-    abstract isShow : bool
-    abstract coordinate : float
-    abstract tickCoord : float
-    abstract offset : float
+type ICircleMarkerProp = interface end
 
 [<Erase>]
-type IXAxisTickProperties =
-    abstract fill : string
-    abstract index : int
-    abstract height : float
-    abstract stroke  : string
-    abstract textAnchor : string
-    abstract verticalAnchor : string
-    abstract visibleTicksCount : int
-    abstract width : float
-    abstract x : float
-    abstract y : float
+type IFeatureGroupProp = interface end
 
 [<Erase>]
-type ITickItem =
-    abstract value : obj
-    abstract coordinate : float
-    abstract index : int
+type IGeoJSONProp = interface end
 
 [<Erase>]
-type IPolarAngleAxisTickProperties =
-    abstract angleAxisId : string
-    abstract cx : float
-    abstract cy: float
-    abstract radius: float
-    abstract axisLineType : string
-    abstract orientation : string
-    abstract ticks : ITickItem array
+type IImageOverlayProp = interface end
 
 [<Erase>]
-type IPieLabelProperties =
-    abstract cy : float
-    abstract cx : float
-    abstract midAngle : float
-    abstract innerRadius : float
-    abstract outerRadius : float
-    abstract percent : float
-    abstract index : int
+type ILayerGroupProp = interface end
 
 [<Erase>]
-type ChartCoordinate =
-    abstract x : float
-    abstract y : float
+type ILayersControlProp = interface end
 
 [<Erase>]
-type ChartDataPoint<'payload> =
-    abstract payload: 'payload
-    abstract color : string
-    abstract fill : string
-    abstract strokeWidth : float
-    abstract value : float
-    abstract dataKey : string
-    abstract name : string
+type ILayerControlProp = interface end
 
 [<Erase>]
-type ChartMouseEvent<'label, 'payload> =
-    abstract activeCoordinate : ChartCoordinate
-    abstract activeLabel : 'label
-    abstract activePayload : ChartDataPoint<'payload> array
-    abstract activeTooltipIndex : int
-    abstract chartX : int
-    abstract chartY : int
+type IMarkerProp = interface end
 
 [<Erase>]
-type IAreaProperty = interface end
+type IPaneProp = interface end
 
 [<Erase>]
-type IAreaChartProperty = interface end
+type IPolygonProp = interface end
 
 [<Erase>]
-type IBarChartProperty = interface end
+type IPolylineProp = interface end
 
 [<Erase>]
-type IBarProperty = interface end
+type IPopupProp = interface end
 
 [<Erase>]
-type IBrushProperty = interface end
+type IRectangleProp = interface end
 
 [<Erase>]
-type IXAxisProperty = interface end
+type ISVGOverlayProp = interface end
 
 [<Erase>]
-type IYAxisProperty = interface end
+type IScaleControlProp = interface end
 
 [<Erase>]
-type IZAxisProperty = interface end
+type ITooltipProp = interface end
 
 [<Erase>]
-type ITooltipProperty = interface end
+type IVideoOverlayProp = interface end
 
 [<Erase>]
-type ILegendProperty = interface end
+type IWMSTileLayerProp = interface end
 
 [<Erase>]
-type ICellProperty = interface end
+type IZoomControlProp = interface end
 
 [<Erase>]
-type ILabelListProperty = interface end
+type IPathOption = interface end
 
 [<Erase>]
-type ILabelProperty = interface end
+type ITileLayerProp = Feliz.IReactProperty
 
-[<Erase>]
-type ISectorProperty = interface end
+module BaseProps =
+    [<Erase>]
+    type ReactLeaflet<'a> =
+        static member inline attribution (value: string) = unbox<'a> ("attribution", value)
+        // static member inline ref (value: (obj -> unit)) = unbox<'a> ("ref", value)
+        static member inline key (value: string) = unbox<'a> ("key", value)
+        static member inline custom (key: string, value: obj) = unbox<'a> (key, value)
+        static member inline children (elements: ReactElement list) = unbox<'a> (prop.children elements)
 
-[<Erase>]
-type ILineProperty = interface end
+    [<Erase>]
+    type Layer<'a> =
+        inherit ReactLeaflet<'a>
+        static member inline pane (value: string) = unbox<'a> ("pane", value)
+        static member inline className (value: string) = unbox<'a> ("className", value)
+        static member inline zIndex (value: float) = unbox<'a> ("zIndex", value)
 
-[<Erase>]
-type ILineChartProperty = interface end
+    [<Erase>]
+    type InteractiveLayer<'a> =
+        inherit Layer<'a>
+        static member inline interactive (value: bool) = unbox<'a> ("interactive", value)
+        static member inline bubblingMouseEvents (value: bool) = unbox<'a> ("bubblingMouseEvents", value)
 
-[<Erase>]
-type ICartesianGridProperty = interface end
+    [<Erase>]
+    type GridLayer<'a> =
+        inherit Layer<'a>
+        static member inline tileSize (value: float) = unbox<'a> ("tileSize", value)
+        static member inline tileSize (value: Point) = unbox<'a> ("tileSize", value)
+        static member inline opacity (value: float) = unbox<'a> ("opacity", value)
+        static member inline updateWhenIdle (value: bool) = unbox<'a> ("updateWhenIdle", value)
+        static member inline updateWhenZooming (value: bool) = unbox<'a> ("updateWhenZooming", value)
+        static member inline updateInterval (value: float) = unbox<'a> ("updateInterval", value)
+        static member inline bounds (value: LatLngBounds) = unbox<'a> ("bounds", value)
+        static member inline bounds (value: LatLngAltBounds) = unbox<'a> ("bounds", value)
+        static member inline minZoom (value: float) = unbox<'a> ("minZoom", value)
+        static member inline maxZoom (value: float) = unbox<'a> ("maxZoom", value)
+        static member inline maxNativeZoom (value: float) = unbox<'a> ("maxNativeZoom", value)
+        static member inline minNativeZoom (value: float) = unbox<'a> ("minNativeZoom", value)
+        static member inline noWrap (value: bool) = unbox<'a> ("noWrap", value)
+        static member inline keepBuffer (value: float) = unbox<'a> ("keepBuffer", value)
 
-[<Erase>]
-type ICartesianAxisProperty = interface end
+    [<Erase>]
+    type Path<'a> =
+        inherit InteractiveLayer<'a>
+        static member inline stroke (value: bool) = unbox<'a> ("stroke", value)
+        static member inline color (value: string) = unbox<'a> ("color", value)
+        static member inline weight (value: float) = unbox<'a> ("weight", value)
+        static member inline opacity (value: float) = unbox<'a> ("opacity", value)
+        static member inline lineCap (value: LineCapShape) = unbox<'a> ("lineCap", value)
+        static member inline lineJoin (value: LineJoinShape) = unbox<'a> ("lineJoin", value)
+        static member inline dashArray (value: string) = unbox<'a> ("dashArray", value)
+        static member inline dashOffset (value: string) = unbox<'a> ("dashOffset", value)
+        static member inline fill (value: bool) = unbox<'a> ("fill", value)
+        static member inline fillColor (value: string) = unbox<'a> ("fillColor", value)
+        static member inline fillOpacity (value: float) = unbox<'a> ("fillOpacity", value)
+        static member inline fillRule (value: FillRule) = unbox<'a> ("fillRule", value)
+        static member inline renderer (value: Leaflet.Renderer) = unbox<'a> ("renderer", value)
+        static member inline pathOptions (value: IPathOption list) = unbox<'a> ("pathOptions", createObj !!value)
 
-[<Erase>]
-type IResponsiveContainerProperty = interface end
-
-[<Erase>]
-type IComposedChartProperty = interface end
-
-[<Erase>]
-type IReferenceLineProperty = interface end
-
-[<Erase>]
-type IReferenceAreaProperty = interface end
-
-[<Erase>]
-type IReferenceDotProperty = interface end
-
-[<Erase>]
-type IPieProperty = interface end
-
-[<Erase>]
-type IPieChartProperty = interface end
-
-[<Erase>]
-type IRadarProperty = interface end
-
-[<Erase>]
-type IRadarChartProperty = interface end
-
-[<Erase>]
-type IRadialBarChartProperty = interface end
-
-[<Erase>]
-type IRadialBarProperty = interface end
-
-[<Erase>]
-type IScatterChartProperty = interface end
-
-[<Erase>]
-type IScatterProperty = interface end
-
-[<Erase>]
-type IPolarAngleAxisProperty = interface end
-
-[<Erase>]
-type IPolarGridProperty = interface end
-
-[<Erase>]
-type IPolarRadiusAxisProperty = interface end
-
-[<Erase>]
-type IFunnelChartProperty = interface end
-
-[<Erase>]
-type IFunnelProperty = interface end
-
-[<Erase>]
-type IErrorBarProperty = interface end

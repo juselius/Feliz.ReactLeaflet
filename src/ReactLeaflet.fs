@@ -1,821 +1,163 @@
-// ts2fable 0.5.2
-module rec ReactLeaflet
+namespace Feliz.ReactLeaflet
 
 open Fable.Core
 open Fable.Core.JsInterop
 open Feliz
 
 [<Erase>]
-type Leaf =
-    static member ref r = unbox("ref", r)
-    static member key (k : string) = unbox("key", k)
-    static member custom (key: string, value: obj) = unbox(key, value)
+type ReactLeaflet =
+    static member inline mapContainer (properties: IMapContainerProp list) =
+        Interop.reactApi.createElement (import "MapContainer" "react-leaflet", createObj !!properties)
+    static member inline mapConsumer (renderer: Leaflet.Map -> unit) =
+        Fable.React.ReactBindings.React.createElement (import "MapConsumer" "react-leaflet", [], [ !!renderer ])
+    static member inline useMap () : Leaflet.Map = import "useMap" "react-leaflet"
+    [<Emit("useMapEvent($0, $1)")>]
+    static member inline useMapEvent (ev: string * (unit -> unit)) : ReactElement = jsNative
+    [<Emit("useMapEvents($0)")>]
+    static member inline useMapEvents (ev: Leaflet.LeafletEventHandlerFnMap) : ReactElement = jsNative
+    static member inline attributionControl (properties: IAttributionControlProp list) =
+       Interop.reactApi.createElement (import "AttributionControl" "react-leaflet", createObj !!properties)
+    static member inline circle (properties: ICircleProp list) =
+       Interop.reactApi.createElement (import "Circle" "react-leaflet", createObj !!properties)
+    static member inline circleMarker (properties: ICircleMarkerProp list) =
+       Interop.reactApi.createElement (import "CircleMarker" "react-leaflet", createObj !!properties)
+    static member inline featureGroup (properties: IFeatureGroupProp list) =
+       Interop.reactApi.createElement (import "FeatureGroup" "react-leaflet", createObj !!properties)
+    static member inline geoJSON (properties: IGeoJSONProp list) =
+       Interop.reactApi.createElement (import "GeoJSON" "react-leaflet", createObj !!properties)
+    static member inline imageOverlay (properties: IImageOverlayProp list) =
+       Interop.reactApi.createElement (import "ImageOverlay" "react-leaflet", createObj !!properties)
+    static member inline layerGroup (properties: ILayerGroupProp list) =
+       Interop.reactApi.createElement (import "LayerGroup" "react-leaflet", createObj !!properties)
+    static member inline layersControl (properties: ILayersControlProp list) =
+       Interop.reactApi.createElement (import "LayersControl" "react-leaflet", createObj !!properties)
+    static member inline marker (properties: IMarkerProp list) =
+       Interop.reactApi.createElement (import "Marker" "react-leaflet", createObj !!properties)
+    static member inline pane (properties: IPaneProp list) =
+       Interop.reactApi.createElement (import "Pane" "react-leaflet", createObj !!properties)
+    static member inline polygon (properties: IPolygonProp list) =
+       Interop.reactApi.createElement (import "Polygon" "react-leaflet", createObj !!properties)
+    static member inline polyline (properties: IPolylineProp list) =
+       Interop.reactApi.createElement (import "Polyline" "react-leaflet", createObj !!properties)
+    static member inline popup (properties: IPopupProp list) =
+       Interop.reactApi.createElement (import "Popup" "react-leaflet", createObj !!properties)
+    static member inline rectangle (properties: IRectangleProp list) =
+       Interop.reactApi.createElement (import "Rectangle" "react-leaflet", createObj !!properties)
+    static member inline svgOverlay (properties: ISVGOverlayProp list) =
+       Interop.reactApi.createElement (import "SVGOverlay" "react-leaflet", createObj !!properties)
+    static member inline scaleControl (properties: IScaleControlProp list) =
+       Interop.reactApi.createElement (import "ScaleControl" "react-leaflet", createObj !!properties)
+    static member inline tileLayer (properties: ITileLayerProp list) =
+       Interop.reactApi.createElement (import "TileLayer" "react-leaflet", createObj !!properties)
+    static member inline tooltip (properties: ITooltipProp list) =
+       Interop.reactApi.createElement (import "Tooltip" "react-leaflet", createObj !!properties)
+    static member inline videoOverlay (properties: IVideoOverlayProp list) =
+       Interop.reactApi.createElement (import "VideoOverlay" "react-leaflet", createObj !!properties)
+    static member inline wmsTileLayer (properties: IWMSTileLayerProp list) =
+       Interop.reactApi.createElement (import "WMSTileLayer" "react-leaflet", createObj !!properties)
+    static member inline zoomControl (properties: IZoomControlProp list) =
+       Interop.reactApi.createElement (import "ZoomControl" "react-leaflet", createObj !!properties)
 
-[<RequireQualifiedAccess>]
-type GridLayerProps =
-    inherit Leaf
-    // | TileSize of U2<float, Leaflet.Point>
-    // | Opacity of float
-    // | UpdateWhenIdle of bool
-    // | UpdateWhenZooming of bool
-    // | UpdateInterval of float
-    // | Attribution of string
-    // | ZIndex of float
-    // | Bounds of Leaflet.LatLngBoundsExpression
-    // | MinZoom of float
-    // | MaxZoom of float
-    // | NoWrap of bool
-    // | Pane of string
-    // | ClassName of string
-    // | KeepBuffer of float
-    // | Ref of (obj -> unit)
-    // | Key of string
-    static member Custom(key: string, value: obj): GridLayerProps = unbox(key, value)
+[<Erase>]
+type mapContainer =
+    inherit BaseProps.ReactLeaflet<IMapContainerProp>
+    static member inline bounds (value: LatLngBounds) = Interop.mkMapContainerProp "bounds" value
+    static member inline bounds (value: LatLngAltBounds) = Interop.mkMapContainerProp "bounds" value
+    static member inline boundsOptions (value: Leaflet.FitBoundsOptions) = Interop.mkMapContainerProp "boundsOption" value
+    static member inline className (value: string) = Interop.mkMapContainerProp "className" value
+    static member inline id (value: string) = Interop.mkMapContainerProp "id" value
+    static member inline placeholder (value: ReactElement) = Interop.mkMapContainerProp "placeholder" value
+    static member inline style (value: IStyleAttribute list) = unbox ("style", createObj !!value)
+    static member inline whenCreated (value: (Leaflet.Map -> unit)) = Interop.mkMapContainerProp "whenCreated" value
+    static member inline whenReady (value: (unit -> unit)) = Interop.mkMapContainerProp "whenReady" value
+    static member inline preferCanvas (value: bool) = Interop.mkMapContainerProp "preferCanvas" value
+    static member inline attributionControl (value: bool) = Interop.mkMapContainerProp "attributionControl" value
+    static member inline zoomControl (value: bool) = Interop.mkMapContainerProp "zoomControl" value
+    static member inline closePopupOnClick (value: bool) = Interop.mkMapContainerProp "closePopupOnClick" value
+    static member inline zoomSnap (value: float) = Interop.mkMapContainerProp "zoomSnap" value
+    static member inline zoomDelta (value: float) = Interop.mkMapContainerProp "zoomDelta" value
+    static member inline trackResize (value: bool) = Interop.mkMapContainerProp "trackResize" value
+    static member inline boxZoom (value: bool) = Interop.mkMapContainerProp "boxZoom" value
+    static member inline doubleClickZoom (value: Leaflet.Zoom) = Interop.mkMapContainerProp "doubleClickZoom" value
+    static member inline dragging (value: bool) = Interop.mkMapContainerProp "dragging" value
+    static member inline crs (value: Leaflet.CRS) = Interop.mkMapContainerProp "crs" value
+    static member inline layers (value: ResizeArray<Leaflet.Layer>) = Interop.mkMapContainerProp "layers" value
+    static member inline renderer (value: Leaflet.Renderer) = Interop.mkMapContainerProp "renderer" value
+    static member inline fadeAnimation (value: bool) = Interop.mkMapContainerProp "fadeAnimation" value
+    static member inline markerZoomAnimation (value: bool) = Interop.mkMapContainerProp "markerZoomAnimation" value
+    static member inline transform3DLimit (value: float) = Interop.mkMapContainerProp "transform3DLimit" value
+    static member inline zoomAnimation (value: bool) = Interop.mkMapContainerProp "zoomAnimation" value
+    static member inline zoomAnimationThreshold (value: float) = Interop.mkMapContainerProp "zoomAnimationThreshold" value
+    static member inline inertia (value: bool) = Interop.mkMapContainerProp "inertia" value
+    static member inline inertiaDeceleration (value: float) = Interop.mkMapContainerProp "inertiaDeceleration" value
+    static member inline inertiaMaxSpeed (value: float) = Interop.mkMapContainerProp "inertiaMaxSpeed" value
+    static member inline easeLinearity (value: float) = Interop.mkMapContainerProp "easeLinearity" value
+    static member inline worldCopyJump (value: bool) = Interop.mkMapContainerProp "worldCopyJump" value
+    static member inline maxBoundsViscosity (value: float) = Interop.mkMapContainerProp "maxBoundsViscosity" value
+    static member inline keyboard (value: bool) = Interop.mkMapContainerProp "keyboard" value
+    static member inline keyboardPanDelta (value: float) = Interop.mkMapContainerProp "keyboardPanDelta" value
+    static member inline scrollWheelZoom (value: Leaflet.Zoom) = Interop.mkMapContainerProp "scrollWheelZoom" value
+    static member inline wheelDebounceTime (value: float) = Interop.mkMapContainerProp "wheelDebounceTime" value
+    static member inline wheelPxPerZoomLevel (value: float) = Interop.mkMapContainerProp "wheelPxPerZoomLevel" value
+    static member inline tap (value: bool) = Interop.mkMapContainerProp "tap" value
+    static member inline tapTolerance (value: float) = Interop.mkMapContainerProp "tapTolerance" value
+    static member inline touchZoom (value: Leaflet.Zoom) = Interop.mkMapContainerProp "touchZoom" value
+    static member inline bounceAtZoomLimits (value: bool) = Interop.mkMapContainerProp "bounceAtZoomLimits" value
+    static member inline animate (value: bool) = Interop.mkMapContainerProp "animate" value
+    static member inline center (value: LatLng) = Interop.mkMapContainerProp "center" value
+    static member inline center (value: LatLngAlt) = Interop.mkMapContainerProp "center" value
+    static member inline maxBounds (value: LatLngBounds) = Interop.mkMapContainerProp "maxBounds" value
+    static member inline maxBounds (value: LatLngAltBounds) = Interop.mkMapContainerProp "maxBounds" value
+    static member inline minZoom (value: float) = Interop.mkMapContainerProp "minZoom" value
+    static member inline useFlyTo (value: bool) = Interop.mkMapContainerProp "useFlyTo" value
+    static member inline zoom (value: float) = Interop.mkMapContainerProp "zoom" value
+    static member inline watch (value: bool) = Interop.mkMapContainerProp "watch" value
+    static member inline setView (value: bool) = Interop.mkMapContainerProp "setView" value
+    static member inline maxZoom (value: float) = Interop.mkMapContainerProp "maxZoom" value
+    static member inline timeout (value: float) = Interop.mkMapContainerProp "timeout" value
+    static member inline maximumAge (value: float) = Interop.mkMapContainerProp "maximumAge" value
+    static member inline enableHighAccuracy (value: bool) = Interop.mkMapContainerProp "enableHighAccuracy" value
+    static member inline duration (value: float) = Interop.mkMapContainerProp "duration" value
+    static member inline noMoveStart (value: bool) = Interop.mkMapContainerProp "noMoveStart" value
+    static member inline paddingTopLeft (value: Point) = Interop.mkMapContainerProp "paddingTopLeft" value
+    static member inline paddingBottomRight (value: Point) = Interop.mkMapContainerProp "paddingBottomRight" value
+    static member inline padding (value: Point) = Interop.mkMapContainerProp "padding" value
+    static member inline eventHandlers (value: mapEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.Map>) = Interop.mkMapContainerProp "ref" value
 
-[<RequireQualifiedAccess>]
-type TileLayerProps =
-    | TileSize of U2<float, Leaflet.Point>
-    | Opacity of float
-    | UpdateWhenIdle of bool
-    | UpdateWhenZooming of bool
-    | UpdateInterval of float
-    | Attribution of string
-    | ZIndex of float
-    | Bounds of Leaflet.LatLngBoundsExpression
-    | NoWrap of bool
-    | Pane of string
-    | ClassName of string
-    | KeepBuffer of float
-    | MinZoom of float
-    | MaxZoom of float
-    | MaxNativeZoom of float
-    | MinNativeZoom of float
-    | Subdomains of U2<string, ResizeArray<string>>
-    | ErrorTileUrl of string
-    | ZoomOffset of float
-    | Tms of bool
-    | ZoomReverse of bool
-    | DetectRetina of bool
-    | CrossOrigin of bool
-    | Url of string
-    | OnLoading of (Leaflet.LeafletEvent -> unit)
-    | OnLoad of (Leaflet.LeafletEvent -> unit)
-    | OnTileLoadstart of (Leaflet.TileEvent -> unit)
-    | OnTileLoad of (Leaflet.TileEvent -> unit)
-    | OnTileUnload of (Leaflet.TileEvent -> unit)
-    | OnTileError of (Leaflet.TileEvent -> unit)
-    | Ref of IRefValue<Leaflet.TileLayer>
-    | Key of string
-    static member Custom(key: string, value: obj): TileLayerProps = unbox(key, value)
+[<Erase>]
+type layerGroup =
+    inherit BaseProps.Layer<ILayerGroupProp>
+    static member inline ref (value: IRefValue<Leaflet.LayerGroup<_>>) = Interop.mkLayerGroupProp "ref" value
 
-[<RequireQualifiedAccess>]
-type WMSTileLayerProps =
-    | TileSize of U2<float, Leaflet.Point>
-    | Opacity of float
-    | UpdateWhenIdle of bool
-    | UpdateWhenZooming of bool
-    | UpdateInterval of float
-    | Attribution of string
-    | ZIndex of float
-    | Bounds of Leaflet.LatLngBoundsExpression
-    | NoWrap of bool
-    | Pane of string
-    | ClassName of string
-    | KeepBuffer of float
-    | MinZoom of float
-    | MaxZoom of float
-    | MaxNativeZoom of float
-    | MinNativeZoom of float
-    | Subdomains of U2<string, ResizeArray<string>>
-    | ErrorTileUrl of string
-    | ZoomOffset of float
-    | Tms of bool
-    | ZoomReverse of bool
-    | DetectRetina of bool
-    | CrossOrigin of bool
-    | Url of string
-    | Layers of string
-    | Styles of string
-    | Format of string
-    | Transparent of bool
-    | Version of string
-    | Crs of Leaflet.CRS
-    | Uppercase of bool
-    | OnLoading of (Leaflet.LeafletEvent -> unit)
-    | OnLoad of (Leaflet.LeafletEvent -> unit)
-    | OnTileLoadstart of (Leaflet.TileEvent -> unit)
-    | OnTileLoad of (Leaflet.TileEvent -> unit)
-    | OnTileUnload of (Leaflet.TileEvent -> unit)
-    | OnTileError of (Leaflet.TileEvent -> unit)
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): WMSTileLayerProps = unbox(key, value)
+[<Erase>]
+type featureGroup =
+    inherit BaseProps.Layer<IFeatureGroupProp>
+    static member inline ref (value: IRefValue<Leaflet.FeatureGroup<_>>) = Interop.mkFeatureGroupProp "ref" value
 
-[<RequireQualifiedAccess>]
-type ImageOverlayProps =
-    | Pane of string
-    | Opacity of float
-    | Alt of string
-    | Interactive of bool
-    | Attribution of string
-    | CrossOrigin of bool
-    | Url of string
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): ImageOverlayProps = unbox(key, value)
+[<Erase>]
+type pathOptions =
+    inherit BaseProps.Path<IPathOption>
+    static member inline ref (value: IRefValue<Leaflet.Path>) = Interop.mkPathOption "ref" value
 
-[<StringEnum>]
-[<RequireQualifiedAccess>]
-type LineCapShape =
-    | Butt
-    | Round
-    | Square
-    | Inherit
+[<Erase>]
+type geoJSON =
+    inherit BaseProps.Layer<IGeoJSONProp>
+    static member inline pointToLayer (value: float * float -> obj) = Interop.mkGeoJSONProp "pointToLayer" value
+    static member inline style (value: Leaflet.PathOptions) = Interop.mkGeoJSONProp "style" value
+    static member inline style (value: Leaflet.StyleFunction<_>) = Interop.mkGeoJSONProp "style" value
+    static member inline onEachFeature (value: obj -> obj) = Interop.mkGeoJSONProp "onEachFeature" value
+    static member inline filter (value: obj -> bool) = Interop.mkGeoJSONProp "filter" value
+    static member inline coordsToLatLng (value: obj -> obj) = Interop.mkGeoJSONProp "coordsToLatLng" value
+    static member inline markersInheritOptions (value: bool) = Interop.mkGeoJSONProp "markersInheritOptions" value
+    static member inline eventHandlers (value: geoJSONEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline ref (value: IRefValue<Leaflet.GeoJSON<_>>) = Interop.mkGeoJSONProp "ref" value
 
-[<StringEnum>]
-[<RequireQualifiedAccess>]
-type LineJoinShape =
-    | Miter
-    | Round
-    | Bevel
-    | Inherit
-
-[<StringEnum>]
-[<RequireQualifiedAccess>]
-type FillRule =
-    | Nonzero
-    | Evenodd
-    | Inherit
-
-[<RequireQualifiedAccess>]
-type PathProps =
-    | Pane of string
-    | Attribution of string
-    | Interactive of bool
-    | Stroke of bool
-    | Color of string
-    | Weight of float
-    | Opacity of float
-    | LineCap of LineCapShape
-    | LineJoin of LineJoinShape
-    | DashArray of string
-    | DashOffset of string
-    | Fill of bool
-    | FillColor of string
-    | FillOpacity of float
-    | FillRule of FillRule
-    | Renderer of Leaflet.Renderer
-    | ClassName of string
-    | OnClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnDblClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseDown of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOver of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOut of (Leaflet.LeafletMouseEvent -> unit)
-    | OnContextMenu of (Leaflet.LeafletMouseEvent -> unit)
-    | OnAdd of (Leaflet.LeafletEvent -> unit)
-    | OnRemove of (Leaflet.LeafletEvent -> unit)
-    | OnPopupOpen of (Leaflet.PopupEvent -> unit)
-    | OnPopupClose of (Leaflet.PopupEvent -> unit)
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): PathProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type PolylineProps =
-    | Pane of string
-    | Attribution of string
-    | Interactive of bool
-    | Stroke of bool
-    | Color of string
-    | Weight of float
-    | Opacity of float
-    | LineCap of LineCapShape
-    | LineJoin of LineJoinShape
-    | DashArray of string
-    | DashOffset of string
-    | Fill of bool
-    | FillColor of string
-    | FillOpacity of float
-    | FillRule of FillRule
-    | Renderer of Leaflet.Renderer
-    | ClassName of string
-    | SmoothFactor of float
-    | NoClip of bool
-    | OnClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnDblClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseDown of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOver of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOut of (Leaflet.LeafletMouseEvent -> unit)
-    | OnContextMenu of (Leaflet.LeafletMouseEvent -> unit)
-    | OnAdd of (Leaflet.LeafletEvent -> unit)
-    | OnRemove of (Leaflet.LeafletEvent -> unit)
-    | OnPopupOpen of (Leaflet.PopupEvent -> unit)
-    | OnPopupClose of (Leaflet.PopupEvent -> unit)
-    | Positions of U3<Leaflet.LatLngExpression [], Leaflet.LatLngExpression [][], Leaflet.LatLngExpression [][][]>
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): PolylineProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type PolygonProps =
-    | SmoothFactor of float
-    | NoClip of bool
-    | Pane of string
-    | Attribution of string
-    | Interactive of bool
-    | Stroke of bool
-    | Color of string
-    | Weight of float
-    | Opacity of float
-    | LineCap of LineCapShape
-    | LineJoin of LineJoinShape
-    | DashArray of string
-    | DashOffset of string
-    | Fill of bool
-    | FillColor of string
-    | FillOpacity of float
-    | FillRule of FillRule
-    | Renderer of Leaflet.Renderer
-    | ClassName of string
-    | OnClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnDblClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseDown of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOver of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOut of (Leaflet.LeafletMouseEvent -> unit)
-    | OnContextMenu of (Leaflet.LeafletMouseEvent -> unit)
-    | OnAdd of (Leaflet.LeafletEvent -> unit)
-    | OnRemove of (Leaflet.LeafletEvent -> unit)
-    | OnPopupOpen of (Leaflet.PopupEvent -> unit)
-    | OnPopupClose of (Leaflet.PopupEvent -> unit)
-    | Positions of U3<Leaflet.LatLngExpression [], Leaflet.LatLngExpression [][], Leaflet.LatLngExpression [][][]>
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): PolygonProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type CircleMarkerProps =
-    | Pane of string
-    | Attribution of string
-    | Interactive of bool
-    | Stroke of bool
-    | Color of string
-    | Weight of float
-    | Opacity of float
-    | LineCap of LineCapShape
-    | LineJoin of LineJoinShape
-    | DashArray of string
-    | DashOffset of string
-    | Fill of bool
-    | FillColor of string
-    | FillOpacity of float
-    | FillRule of FillRule
-    | Renderer of Leaflet.Renderer
-    | ClassName of string
-    | Radius of float
-    | OnClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnDblClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseDown of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOver of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOut of (Leaflet.LeafletMouseEvent -> unit)
-    | OnContextMenu of (Leaflet.LeafletMouseEvent -> unit)
-    | OnAdd of (Leaflet.LeafletEvent -> unit)
-    | OnRemove of (Leaflet.LeafletEvent -> unit)
-    | OnPopupOpen of (Leaflet.PopupEvent -> unit)
-    | OnPopupClose of (Leaflet.PopupEvent -> unit)
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): CircleMarkerProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type CircleProps =
-    | Pane of string
-    | Attribution of string
-    | Interactive of bool
-    | Stroke of bool
-    | Color of string
-    | Weight of float
-    | Opacity of float
-    | LineCap of LineCapShape
-    | LineJoin of LineJoinShape
-    | DashArray of string
-    | DashOffset of string
-    | Fill of bool
-    | FillColor of string
-    | FillOpacity of float
-    | FillRule of FillRule
-    | Renderer of Leaflet.Renderer
-    | ClassName of string
-    | Radius of float
-    | OnClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnDblClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseDown of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOver of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOut of (Leaflet.LeafletMouseEvent -> unit)
-    | OnContextMenu of (Leaflet.LeafletMouseEvent -> unit)
-    | OnAdd of (Leaflet.LeafletEvent -> unit)
-    | OnRemove of (Leaflet.LeafletEvent -> unit)
-    | OnPopupOpen of (Leaflet.PopupEvent -> unit)
-    | OnPopupClose of (Leaflet.PopupEvent -> unit)
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): CircleProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type GeoJSONProps =
-    | Pane of string
-    | Attribution of string
-    | Data of Geojson.GeoJsonObject
-    /// A Function defining how GeoJSON points spawn Leaflet layers.
-    /// It is internally called when data is added, passing the GeoJSON point
-    /// feature and its LatLng.
-    ///
-    /// The default is to spawn a default Marker:
-    ///
-    /// ```
-    /// function(geoJsonPoint, latlng) {
-    ///      return L.marker(latlng);
-    /// }
-    /// ```
-    | PointToLayer of ((Geojson.Feature<Geojson.Point, obj> * Leaflet.LatLng) -> Leaflet.Layer)
-
-    /// A Function defining the Path options for styling GeoJSON lines and polygons,
-    /// called internally when data is added.
-    ///
-    /// The default value is to not override any defaults:
-    ///
-    /// ```
-    /// function (geoJsonFeature) {
-    ///      return {}
-    /// }
-    /// ```
-    | Style of Leaflet.StyleFunction<obj>
-    /// A Function that will be called once for each created Feature, after it
-    /// has been created and styled. Useful for attaching events and popups to features.
-    ///
-    /// The default is to do nothing with the newly created layers:
-    ///
-    /// ```
-    /// function (feature, layer) {}
-    /// ```
-    | OnEachFeature of ((Geojson.Feature<Geojson.GeometryObject, obj> * Leaflet.Layer) -> unit)
-    /// A Function that will be used to decide whether to show a feature or not.
-    ///
-    /// The default is to show all features:
-    ///
-    /// ```
-    /// function (geoJsonFeature) {
-    ///      return true;
-    /// }
-    /// ```
-    | Filter of (Geojson.Feature<Geojson.GeometryObject, obj> -> bool)
-    /// A Function that will be used for converting GeoJSON coordinates to LatLngs.
-    /// The default is the coordsToLatLng static method.
-    | CoordsToLatLng of (U2<float * float, float * float * float> -> Leaflet.LatLng)
-    | OnClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnDblClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOver of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOut of (Leaflet.LeafletMouseEvent -> unit)
-    | OnContextMenu of (Leaflet.LeafletMouseEvent -> unit)
-    | OnLayerAdd of (Leaflet.LayerEvent -> unit)
-    | OnLayerRemove of (Leaflet.LayerEvent -> unit)
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): GeoJSONProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type MapProps =
-    | PreferCanvas of bool
-    | AttributionControl of bool
-    | ZoomControl of bool
-    | ClosePopupOnClick of bool
-    | ZoomSnap of float
-    | ZoomDelta of float
-    | TrackResize of bool
-    | BoxZoom of bool
-    | DoubleClickZoom of Leaflet.Zoom
-    | Dragging of bool
-    | Crs of Leaflet.CRS
-    | Layers of ResizeArray<Leaflet.Layer>
-    | Renderer of Leaflet.Renderer
-    | FadeAnimation of bool
-    | MarkerZoomAnimation of bool
-    | Transform3DLimit of float
-    | ZoomAnimation of bool
-    | ZoomAnimationThreshold of float
-    | Inertia of bool
-    | InertiaDeceleration of float
-    | InertiaMaxSpeed of float
-    | EaseLinearity of float
-    | WorldCopyJump of bool
-    | MaxBoundsViscosity of float
-    | Keyboard of bool
-    | KeyboardPanDelta of float
-    | ScrollWheelZoom of Leaflet.Zoom
-    | WheelDebounceTime of float
-    | WheelPxPerZoomLevel of float
-    | Tap of bool
-    | TapTolerance of float
-    | TouchZoom of Leaflet.Zoom
-    | BounceAtZoomLimits of bool
-    | Animate of bool
-    | Bounds of Leaflet.LatLngBoundsExpression
-    | BoundsOptions of Leaflet.FitBoundsOptions
-    | Center of Leaflet.LatLngExpression
-    | ClassName of string
-    | Id of string
-    | MaxBounds of Leaflet.LatLngBoundsExpression
-    | MinZoom of float
-    | UseFlyTo of bool
-    | Zoom of float
-    | Watch of bool
-    | SetView of bool
-    | MaxZoom of float
-    | Timeout of float
-    | MaximumAge of float
-    | EnableHighAccuracy of bool
-    | Duration of float
-    | NoMoveStart of bool
-    | PaddingTopLeft of Leaflet.PointExpression
-    | PaddingBottomRight of Leaflet.PointExpression
-    | Padding of Leaflet.PointExpression
-    | OnClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnDblClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseDown of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseUp of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOver of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOut of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseMove of (Leaflet.LeafletMouseEvent -> unit)
-    | OnContextMenu of (Leaflet.LeafletMouseEvent -> unit)
-    | OnFocus of (Leaflet.LeafletEvent -> unit)
-    | OnBlur of (Leaflet.LeafletEvent -> unit)
-    | OnPreClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnLoad of (Leaflet.LeafletEvent -> unit)
-    | OnUnload of (Leaflet.LeafletEvent -> unit)
-    | OnViewReset of (Leaflet.LeafletEvent -> unit)
-    | OnMove of (Leaflet.LeafletEvent -> unit)
-    | OnMoveStart of (Leaflet.LeafletEvent -> unit)
-    | OnMoveEnd of (Leaflet.LeafletEvent -> unit)
-    | OnDragStart of (Leaflet.LeafletEvent -> unit)
-    | OnDrag of (Leaflet.LeafletEvent -> unit)
-    | OnDragEnd of (Leaflet.DragEndEvent -> unit)
-    | OnZoomStart of (Leaflet.LeafletEvent -> unit)
-    | OnZoomEnd of (Leaflet.LeafletEvent -> unit)
-    | OnZoomLevelsChange of (Leaflet.LeafletEvent -> unit)
-    | OnResize of (Leaflet.ResizeEvent -> unit)
-    | OnAutopaSstart of (Leaflet.LeafletEvent -> unit)
-    | OnLayerAdd of (Leaflet.LayerEvent -> unit)
-    | OnLayerRemove of (Leaflet.LayerEvent -> unit)
-    | OnBaseLayerChange of (Leaflet.LayersControlEvent -> unit)
-    | OnOverLayerAdd of (Leaflet.LayersControlEvent -> unit)
-    | OnOverLayerRemove of (Leaflet.LayersControlEvent -> unit)
-    | OnLocationFound of (Leaflet.LocationEvent -> unit)
-    | OnLocationError of (Leaflet.ErrorEvent -> unit)
-    | OnPopupOpen of (Leaflet.PopupEvent -> unit)
-    | OnPopupClose of (Leaflet.PopupEvent -> unit)
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom (key: string, value: obj): MapProps = unbox(key, value)
-    static member Style (css: Props.CSSProp list) : MapProps = unbox ("style", keyValueList CaseRules.LowerFirst css)
-
-[<StringEnum>]
-[<RequireQualifiedAccess>]
-type ControlPosition =
-    | Topleft
-    | Topright
-    | Bottomleft
-    | Bottomright
-
-[<RequireQualifiedAccess>]
-type MapControlProps =
-    | Position of ControlPosition
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): MapControlProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type ZoomProps =
-    | Position of ControlPosition
-    | ZoomInText of string
-    | ZoomInTitle of string
-    | ZoomOutText of string
-    | ZoomOutTitle of string
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): ZoomProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type PopupProps =
-    | Offset of Leaflet.PointExpression
-    | ZoomAnimation of bool
-    | ClassName of string
-    | Pane of string
-    | MaxWidth of float
-    | MinWidth of float
-    | MaxHeight of float
-    | AutoPan of bool
-    | AutoPanPaddingTopLeft of Leaflet.PointExpression
-    | AutoPanPaddingBottomRight of Leaflet.PointExpression
-    | AutoPanPadding of Leaflet.PointExpression
-    | KeepInView of bool
-    | CloseButton of bool
-    | AutoClose of bool
-    | CloseOnClick of bool
-    | OnClose of (Leaflet.Popup -> unit)
-    | OnOpen of (Leaflet.Popup -> unit)
-    | Position of Leaflet.LatLngBoundsExpression
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): PopupProps = unbox(key, value)
-
-[<StringEnum>]
-[<RequireQualifiedAccess>]
-type Direction =
-    | Right
-    | Left
-    | Top
-    | Bottom
-    | Center
-    | Auto
-
-[<RequireQualifiedAccess>]
-type TooltipProps =
-    | ZoomAnimation of bool
-    | ClassName of string
-    | Pane of string
-    | Offset of Leaflet.PointExpression
-    | Direction of Direction
-    | Permanent of bool
-    | Sticky of bool
-    | Interactive of bool
-    | Opacity of float
-    | OnClose of (Leaflet.Tooltip -> unit)
-    | OnOpen of (Leaflet.Tooltip -> unit)
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): TooltipProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type MarkerProps =
-    | Pane of string
-    | Attribution of string
-    | Interactive of bool
-    | Icon of U2<Leaflet.Icon<obj>, Leaflet.DivIcon>
-    | Clickable of bool
-    | Draggable of bool
-    | Keyboard of bool
-    | Title of string
-    | Alt of string
-    | ZIndexOffset of float
-    | Opacity of float
-    | RiseOnHover of bool
-    | RiseOffset of float
-    | Position of Leaflet.LatLngExpression
-    | OnClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnDblClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseDown of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOver of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOut of (Leaflet.LeafletMouseEvent -> unit)
-    | OnContextMenu of (Leaflet.LeafletMouseEvent -> unit)
-    | OnDragStart of (Leaflet.LeafletEvent -> unit)
-    | OnDrag of (Leaflet.LeafletEvent -> unit)
-    | OnDragEnd of (Leaflet.DragEndEvent -> unit)
-    | OnMove of (Leaflet.LeafletEvent -> unit)
-    | OnAdd of (Leaflet.LeafletEvent -> unit)
-    | OnRemove of (Leaflet.LeafletEvent -> unit)
-    | OnPopupOpen of (Leaflet.PopupEvent -> unit)
-    | OnPopupClose of (Leaflet.PopupEvent -> unit)
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): MarkerProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type RectangleProps =
-    | Bounds of Leaflet.LatLngBoundsExpression
-    | Pane of string
-    | Attribution of string
-    | Interactive of bool
-    | Stroke of bool
-    | Color of string
-    | Weight of float
-    | Opacity of float
-    | LineCap of LineCapShape
-    | LineJoin of LineJoinShape
-    | DashArray of string
-    | DashOffset of string
-    | Fill of bool
-    | FillColor of string
-    | FillOpacity of float
-    | FillRule of FillRule
-    | Renderer of Leaflet.Renderer
-    | ClassName of string
-    | OnClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnDblClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseDown of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOver of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOut of (Leaflet.LeafletMouseEvent -> unit)
-    | OnContextMenu of (Leaflet.LeafletMouseEvent -> unit)
-    | OnAdd of (Leaflet.LeafletEvent -> unit)
-    | OnRemove of (Leaflet.LeafletEvent -> unit)
-    | OnPopupOpen of (Leaflet.PopupEvent -> unit)
-    | OnPopupClose of (Leaflet.PopupEvent -> unit)
-    | PopupContainer of Leaflet.FeatureGroup<obj>
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): RectangleProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type AttributionControlProps =
-    | Prefix of U2<string, bool>
-    | Position of ControlPosition
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): AttributionControlProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type LayersControlProps =
-    | BaseLayers of Leaflet.Control.LayersObject
-    | Overlays of Leaflet.Control.LayersObject
-    | OnBaseLayerChange of (Leaflet.LayersControlEvent -> unit)
-    | OnOverLayerAdd of (Leaflet.LayersControlEvent -> unit)
-    | OnOverLayerRmove of (Leaflet.LayersControlEvent -> unit)
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): LayersControlProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type ScaleControlProps =
-    | MaxWidth of float
-    | Metric of bool
-    | Imperial of bool
-    | UpdateWhenIdle of bool
-    | Position of ControlPosition
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): ScaleControlProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type ZoomControlProps =
-    | ZoomInText of string
-    | ZoomInTitle of string
-    | ZoomOutText of string
-    | ZoomOutTitle of string
-    | Position of ControlPosition
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): ZoomControlProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type PaneProps =
-    | Name of string
-    | Map of Leaflet.Map
-    | ClassName of string
-    | Pane of string
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Style (css: Props.CSSProp list) : MapProps = unbox ("style", keyValueList CaseRules.LowerFirst css)
-    static member Custom(key: string, value: obj): PaneProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type MapLayerProps =
-    | Pane of string
-    | Attribution of string
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): MapLayerProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type LayerGroupProps =
-    | Pane of string
-    | Attribution of string
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): LayerGroupProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type FeatureGroupProps =
-    | Pane of string
-    | Attribution of string
-    | Interactive of bool
-    | Stroke of bool
-    | Color of string
-    | Weight of float
-    | Opacity of float
-    | LineCap of LineCapShape
-    | LineJoin of LineJoinShape
-    | DashArray of string
-    | DashOffset of string
-    | Fill of bool
-    | FillColor of string
-    | FillOpacity of float
-    | FillRule of FillRule
-    | Renderer of Leaflet.Renderer
-    | ClassName of string
-    | OnClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnDblClick of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOver of (Leaflet.LeafletMouseEvent -> unit)
-    | OnMouseOut of (Leaflet.LeafletMouseEvent -> unit)
-    | OnContextMenu of (Leaflet.LeafletMouseEvent -> unit)
-    | OnLayerAdd of (Leaflet.LayerEvent -> unit)
-    | OnLayerRemove of (Leaflet.LayerEvent -> unit)
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): FeatureGroupProps = unbox(key, value)
-
-[<RequireQualifiedAccess>]
-type MapContainerProps =
-    | Bounds of Leaflet.LatLngBoundsExpression
-    | BoundsOptions of Leaflet.FitBoundsOptions
-    | ClassName of string
-    | Id of string
-    | Placeholder of ReactElement
-    | Style of Props.CSSProp list
-    | WhenCreated of (Leaflet.Map -> unit)
-    | WhenReady of (unit -> unit)
-    | Ref of (obj -> unit)
-    | Key of string
-    static member Custom(key: string, value: obj): FeatureGroupProps = unbox(key, value)
-
-
-let inline mapContainer (props: MapContainerProps list) (children : ReactElement list) : ReactElement =
-    ofImport "MapContainer" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-[<ImportMember("react-leaflet")>]
-let inline useMap () : Leaflet.Map = jsNative
-
-[<ImportMember("react-leaflet")>]
-let inline useMapEvents (_: Leaflet.LeafletEventHandlerFnMap) : Leaflet.Map = jsNative
-
-[<ImportMember("react-leaflet")>]
-let inline useMapEvent (_: string, _: Leaflet.LeafletEventHandlerFn) : Leaflet.Map = jsNative
-
-// let inline mapConsumer (props: MapContainerProps list) (children : ReactElement list) : ReactElement =
-//     ReactBindings.React.createElement
-
-let inline pane (props: PaneProps list) (children : ReactElement list) : ReactElement =
-    ofImport "Pane" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline mapLayer (props: MapLayerProps list) (children : ReactElement list) : ReactElement =
-    ofImport "MapLayer" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline gridLayer (props: GridLayerProps list) (children : ReactElement list) : ReactElement =
-    ofImport "GridLayer" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline tileLayer (props: TileLayerProps list) (children : ReactElement list) : ReactElement =
-    ofImport "TileLayer" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline wMSTileLayer (props: WMSTileLayerProps list) (children : ReactElement list) : ReactElement =
-    ofImport "WMSTileLayer" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline imageOverlay (props: ImageOverlayProps list) (children : ReactElement list) : ReactElement =
-    ofImport "ImageOverlay" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline layerGroup (props: LayerGroupProps list) (children : ReactElement list) : ReactElement =
-    ofImport "LayerGroup" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline marker (props: MarkerProps list) (children : ReactElement list) : ReactElement =
-    ofImport "Marker" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline path (props: PathProps list) (children : ReactElement list) : ReactElement =
-    ofImport "Path" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline circle (props: CircleProps list) (children : ReactElement list) : ReactElement =
-    ofImport "Circle" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline circleMarker (props: CircleMarkerProps list) (children : ReactElement list) : ReactElement =
-    ofImport "CircleMarker" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline featureGroup (props: FeatureGroupProps list) (children : ReactElement list) : ReactElement =
-    ofImport "FeatureGroup" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline geoJSON (props: GeoJSONProps list) (children : ReactElement list) : ReactElement =
-    ofImport "GeoJSON" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline polyline (props: PolylineProps list) (children : ReactElement list) : ReactElement =
-    ofImport "Polyline" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline polygon (props: PolygonProps list) (children : ReactElement list) : ReactElement =
-    ofImport "Polygon" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline rectangle (props: RectangleProps list) (children : ReactElement list) : ReactElement =
-    ofImport "Rectangle" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline popup (props: PopupProps list) (children : ReactElement list) : ReactElement =
-    ofImport "Popup" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline tooltip (props: TooltipProps list) (children : ReactElement list) : ReactElement =
-    ofImport "Tooltip" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline mapControl (props: MapControlProps list) (children : ReactElement list) : ReactElement =
-    ofImport "MapControl" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline attributionControl (props: AttributionControlProps list) (children : ReactElement list) : ReactElement =
-    ofImport "AttributionControl" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline layersControl (props: LayersControlProps list) (children : ReactElement list) : ReactElement =
-    ofImport "LayersControl" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline scaleControl (props: ScaleControlProps list) (children : ReactElement list) : ReactElement =
-    ofImport "ScaleControl" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
-
-let inline zoomControl (props: ZoomControlProps list) (children : ReactElement list) : ReactElement =
-    ofImport "ZoomControl" "react-leaflet" (keyValueList CaseRules.LowerFirst props) children
+[<Erase>]
+type pane =
+    static member inline className (value: string) = Interop.mkPaneProp "className" value
+    static member inline name (value: string) = Interop.mkPaneProp "name" value
+    static member inline pane (value: string) = Interop.mkPaneProp "pane" value
+    static member inline style (value: IStyleAttribute list) = unbox ("style", createObj !!value)
+    static member inline children (elements: ReactElement list) = unbox<IPaneProp> (prop.children elements)
+    static member inline ref (value: IRefValue<Leaflet.DefaultMapPanes>) = Interop.mkPaneProp "ref" value

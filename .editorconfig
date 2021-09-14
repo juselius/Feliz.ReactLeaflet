@@ -42,6 +42,10 @@ fsharp_multi_line_lambda_closing_newline=false
 fsharp_disable_elmish_syntax=false
 fsharp_strict_mode=false
 
-[src/Client/*.fs]
+[src/*.fs]
+# Feliz style
+fsharp_single_argument_web_mode=true
+
+[test/*.fs]
 # Feliz style
 fsharp_single_argument_web_mode=true
