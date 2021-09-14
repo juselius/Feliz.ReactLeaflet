@@ -1,6 +1,6 @@
 
 include:
   - project: serit/gitlab-ci
-    ref: 1.9.0
-    file: NuGet.gitlab-ci.yml
+    ref: 1.10.0
+    file: DotnetPackage.gitlab-ci.yml
 
