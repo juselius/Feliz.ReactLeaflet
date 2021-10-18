@@ -12,7 +12,7 @@ type ReactLeaflet =
         Fable.React.ReactBindings.React.createElement (import "MapConsumer" "react-leaflet", [], [ !!renderer ])
     static member inline useMap () : Leaflet.Map = import "useMap" "react-leaflet"
     // [<Emit("useMapEvent($0, $1)")>]
-    static member inline useMapEvent (ev: string * (obj -> unit)) : Leaflet.Map =  import "useMapEvent" "react-leaflet"
+    static member inline useMapEvent (ev: string * (unit -> unit)) : Leaflet.Map =  import "useMapEvent" "react-leaflet"
     // [<Emit("useMapEvents($0)")>]
     static member inline useMapEvents (ev: Leaflet.LeafletEventHandlerFnMap) : Leaflet.Map =  import "useMapEvents" "react-leaflet"
     static member inline attributionControl (properties: IAttributionControlProp list) =

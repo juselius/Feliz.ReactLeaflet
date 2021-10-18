@@ -82,7 +82,6 @@ type gridLayerEvent =
    static member inline tileunload (handler: (Leaflet.TileEvent -> unit)) =  "tileunload" ==> handler |> unbox
    static member inline tileerror (handler: (Leaflet.TileEvent -> unit)) =  "tileerror" ==> handler |> unbox
    static member inline load (handler: (Leaflet.LeafletEvent -> unit)) =  "load" ==> handler |> unbox
-   static member inline click (handler: (Leaflet.LeafletMouseEvent -> unit)) =  "click" ==> handler |> unbox
 
 [<Erase>]
 type circleEvent = BaseEvents.InteractiveLayerEvents
