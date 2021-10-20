@@ -1,6 +1,6 @@
 
 include:
   - project: serit/gitlab-ci
-    ref: 1.10.0
+    ref: main
     file: DotnetPackage.gitlab-ci.yml
 

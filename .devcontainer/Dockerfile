@@ -1,14 +1,14 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0
 
 # Add keys and sources lists
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" \
     | tee /etc/apt/sources.list.d/yarn.list
 
 # Install node, 7zip, yarn, git, process tools
 RUN apt-get update \
-    && apt-get install -y nodejs p7zip-full yarn git procps libgdiplus
+    && apt-get install -y nodejs p7zip-full git procps ssh-client
 
 # Clean up
 RUN apt-get autoremove -y \
