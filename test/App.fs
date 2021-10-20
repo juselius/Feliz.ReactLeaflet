@@ -28,16 +28,19 @@ let update (model: Model) (msg: Message) =
 let navBar model dispatch =
     Html.div []
 
-let theMap () =
+[<ReactComponent>]
+let leafletMap () =
     let map = ReactLeaflet.useMap ()
-    map
+    let z = map.getZoom ()
+    Fable.Core.JS.console.log ("zoom: " + string z)
+    Html.div []
 
 let tromso = 69.67, 18.95
 let lyngen = [| (69.15, 19.65); (69.99, 20.5) |]
 
 let indexView model dispatch =
     Html.div [
-        Html.h1 "Feliz.ReactLeaflet test bed"
+        Html.h1 "Feliz.ReactLeaflet"
         Html.hr []
         ReactLeaflet.mapContainer [
             mapContainer.id "foo"
@@ -75,12 +78,9 @@ let indexView model dispatch =
                     ]
                     rectangle.bounds lyngen
                 ]
-            //     // ReactLeaflet.rectangle [
-            //         // rectangle.foobar "foo"
-            //     // ]
+                leafletMap ()
             ]
         ]
-        // theMap
     ]
 
 [<ReactComponent>]
