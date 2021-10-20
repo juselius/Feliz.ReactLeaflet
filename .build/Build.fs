@@ -43,7 +43,7 @@ Target.create "Format" (fun _ ->
 
 Target.create "Test" (fun _ ->
     if System.IO.Directory.Exists testPath then
-      run dotnet "run" testPath
+      ()
     else ()
 )
 
