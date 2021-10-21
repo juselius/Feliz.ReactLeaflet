@@ -17,4 +17,3 @@ deploy
 *.db
 build.fsx.lock
 build/
-.build/
