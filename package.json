@@ -37,11 +37,5 @@
         "semantic-release": "^18.0.0",
         "semantic-release-dotnet": "^1.0.0"
     },
-    "dependencies": {
-        "@material-ui/core": "^4.12.3",
-        "@material-ui/lab": "4.0.0-alpha.60",
-        "leaflet": "^1.7.1",
-        "node-polyglot": "^2.4.0",
-        "react-leaflet": "^3.2.1"
-    }
+    "dependencies": {}
 }
