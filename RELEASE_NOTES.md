@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://gitlab.com/serit/fable/Feliz.ReactLeaflet/compare/v1.0.0...v1.0.1) (2021-10-27)
+
+
+### Bug Fixes
+
+* eventHandlers produced wrong js ([307a2a4](https://gitlab.com/serit/fable/Feliz.ReactLeaflet/commit/307a2a424f5d6ec829ee445a7d46b60713b1519d))
+* svg overlay events ([398aec9](https://gitlab.com/serit/fable/Feliz.ReactLeaflet/commit/398aec90c407285a5160e7fd254492207c843d7f))
+
 # 1.0.0 (2021-10-21)
 
 
