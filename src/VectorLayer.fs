@@ -56,9 +56,9 @@ type rectangle =
     static member inline bounds (value: LatLngBounds) = Interop.mkRectangleProp "bounds" value
     static member inline bounds (value: LatLngAltBounds) = Interop.mkRectangleProp "bounds" value
     static member inline popupContainer (value: Leaflet.FeatureGroup<obj>) = Interop.mkRectangleProp "popupContainer" value
-    static member inline eventHandlers (value: rectangleEvent list) = unbox<IRectangleProp> ("eventHandlers" ==> keyValueList CaseRules.LowerFirst value)
     static member inline smoothFactor (value: float) = Interop.mkRectangleProp "smoothFactor" value
     static member inline noClip (value: bool) = Interop.mkRectangleProp "noClip" value
+    static member inline eventHandlers (value: rectangleEvent list) = unbox<IRectangleProp> ("eventHandlers" ==> keyValueList CaseRules.LowerFirst value)
     static member inline ref (value: IRefValue<Leaflet.Rectangle<_>>) = Interop.mkRectangleProp "ref" value
 
 [<Erase>]

@@ -111,3 +111,6 @@ type imageOverlayEvent =
     inherit BaseEvents.InteractiveLayerEvents
     static member inline load (handler: (Leaflet.LeafletEvent -> unit)) =  "load" ==> handler |> unbox
     static member inline error (handler: (Leaflet.LeafletEvent -> unit)) =  "error" ==> handler |> unbox
+
+[<Erase>]
+type svgOverlayEvent = BaseEvents.InteractiveLayerEvents
