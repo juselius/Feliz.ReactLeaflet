@@ -122,7 +122,7 @@ type mapContainer =
     static member inline paddingTopLeft (value: Point) = Interop.mkMapContainerProp "paddingTopLeft" value
     static member inline paddingBottomRight (value: Point) = Interop.mkMapContainerProp "paddingBottomRight" value
     static member inline padding (value: Point) = Interop.mkMapContainerProp "padding" value
-    static member inline eventHandlers (value: mapEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: mapEvent list) = unbox<IMapContainerProp> ("eventHandlers" ==> keyValueList CaseRules.LowerFirst value)
     static member inline ref (value: IRefValue<Leaflet.Map>) = Interop.mkMapContainerProp "ref" value
 
 [<Erase>]
@@ -150,7 +150,7 @@ type geoJSON =
     static member inline filter (value: obj -> bool) = Interop.mkGeoJSONProp "filter" value
     static member inline coordsToLatLng (value: obj -> obj) = Interop.mkGeoJSONProp "coordsToLatLng" value
     static member inline markersInheritOptions (value: bool) = Interop.mkGeoJSONProp "markersInheritOptions" value
-    static member inline eventHandlers (value: geoJSONEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: geoJSONEvent list) = unbox<IGeoJSONProp> ("eventHandlers" ==> keyValueList CaseRules.LowerFirst value)
     static member inline ref (value: IRefValue<Leaflet.GeoJSON<_>>) = Interop.mkGeoJSONProp "ref" value
 
 [<Erase>]

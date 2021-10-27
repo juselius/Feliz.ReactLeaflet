@@ -16,7 +16,7 @@ type tileLayer =
     static member inline zoomReverse (value: bool) = Interop.mkTileLayerProp "zoomReverse" value
     static member inline detectRetina (value: bool) = Interop.mkTileLayerProp "detectRetina" value
     static member inline crossOrigin (value: bool) = Interop.mkTileLayerProp "crossOrigin" value
-    static member inline eventHandlers (value: gridLayerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: gridLayerEvent list) = unbox<ITileLayerProp> ("eventHandlers" ==> keyValueList CaseRules.LowerFirst value)
     static member inline ref (value: IRefValue<Leaflet.TileLayerOptions>) = Interop.mkTileLayerProp "ref" value
 
 [<Erase>]
@@ -39,7 +39,7 @@ type wmsTileLayer =
     static member inline version (value: string) = Interop.mkWMSTileLayerProp "version" value
     static member inline crs (value: Leaflet.CRS) = Interop.mkWMSTileLayerProp "crs" value
     static member inline uppercase (value: bool) = Interop.mkWMSTileLayerProp "uppercase" value
-    static member inline eventHandlers (value: gridLayerEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: gridLayerEvent list) = unbox<IWMSTileLayerProp> ("eventHandlers" ==> keyValueList CaseRules.LowerFirst value)
     static member inline ref (value: IRefValue<Leaflet.WMSOptions>) = Interop.mkWMSTileLayerProp "ref" value
 
 [<Erase>]
@@ -51,7 +51,7 @@ type imageOverlay =
     static member inline url (value: string) = Interop.mkImageOverlayProp "url" value
     static member inline alt (value: string) = Interop.mkImageOverlayProp "alt" value
     static member inline crossOrigin (value: bool) = Interop.mkImageOverlayProp "crossOrigin" value
-    static member inline eventHandlers (value: imageOverlayEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: imageOverlayEvent list) = unbox<IImageOverlayProp> ("eventHandlers" ==> keyValueList CaseRules.LowerFirst value)
     static member inline ref (value: IRefValue<Leaflet.ImageOverlay>) = Interop.mkImageOverlayProp "ref" value
 
 [<Erase>]
@@ -70,5 +70,5 @@ type videoOverlay =
     static member inline loop (value: bool) = Interop.mkVideoOverlayProp "loop" value
     static member inline keepAspectRatio (value: bool) = Interop.mkVideoOverlayProp "keepAspectRatio" value
     static member inline muted (value: bool) = Interop.mkVideoOverlayProp "muted" value
-    // static member inline eventHandlers (value: imageOverlayEvent list) = unbox<'a> ("eventHandlers", keyValueList CaseRules.LowerFirst value)
+    static member inline eventHandlers (value: imageOverlayEvent list) = unbox<IVideoOverlayProp> ("eventHandlers" ==> keyValueList CaseRules.LowerFirst value)
     // static member inline ref (value: IRefValue<Leaflet.VideoOverlay>) = Interop.mkVideoOverlayProp "ref" value
